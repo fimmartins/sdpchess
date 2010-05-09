@@ -2,7 +2,7 @@ package com.structures;
 import com.structures.pieces.*;
 public class Board {
 public Piece[][] mat=new Piece[8][8];
-int[][] configBoard = { 
+public int[][] configBoard = { 
 	    { 15,12,13,18,19,13,12,15}, 
 	    { 11,11,11,11,11,11,11,11}, 
 	    { 0, 0, 0, 0, 0, 0, 0, 0 },

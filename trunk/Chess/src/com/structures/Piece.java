@@ -1,7 +1,7 @@
 package com.structures;
 import javax.swing.ImageIcon;
 public interface Piece {
-	void posibleMove();
+	int[][] posibleMove(int pTurn,int iPosition,int jPosition,int[][] configurationBoard);
 	ImageIcon icon();
 	
 }
