@@ -9,9 +9,18 @@ public class Rook implements Piece{
 	{
 		this.player=player;
 	}
-	public void posibleMove()
+	public int[][] posibleMove(int pTurn,int iPosition,int jPosition,int[][] boardConfiguration)
 	{
-		
+	int[][] rookMove=new int[8][8];
+	for(int i=0;i<rookMove.length;i++)
+		for(int j=0;j<rookMove[0].length;j++)
+		{
+			if(iPosition==i)
+				rookMove[i][j]=1;
+			if(jPosition==j)
+				rookMove[i][j]=1;
+		}
+	return rookMove;
 	}
 	public ImageIcon icon()
 	{

@@ -4,6 +4,5 @@ public class Main {
 public static void main(String[] args) {
 	@SuppressWarnings("unused")
 	GUI g=new GUI();
-	System.out.println("Merge");
 }
 }
