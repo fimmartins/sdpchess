@@ -1,5 +1,8 @@
-package com.structures;
+package com.application;
 import javax.swing.*;
+
+import com.structures.Game;
+
 import java.awt.*;
 
 public class GUI extends JFrame{
