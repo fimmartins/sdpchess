@@ -1,5 +1,5 @@
 package com.structures;
-
+import com.structures.pieces.*;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 public class Game extends JPanel{
 	boolean butActive=false;
-	JButton tempJButton=new JButton();
+	JButton movePiece=new JButton();
 	Board gBoard=new Board();
 	JButton[][] buttons=new JButton[8][8];
 	private static final long serialVersionUID = 1L;
@@ -25,26 +25,36 @@ public class Game extends JPanel{
 				if(((JButton)e.getSource()).getIcon()!=null)
 				{
 				butActive=true;
-				tempJButton=((JButton)e.getSource());
-				int position=Integer.parseInt(tempJButton.getName());
+				movePiece=((JButton)e.getSource());
+				int position=Integer.parseInt(movePiece.getName());
 				int [][] posibleMoves;
-				posibleMoves=gBoard.mat[position/10][position%10].posibleMove(gBoard.configBoard[position/10][position%10],position/10, position%10, new int[8][8]);
+				posibleMoves=gBoard.mat[position/10][position%10].posibleMove(gBoard.configBoard[position/10][position%10],position/10, position%10, gBoard.configBoard);
 				for(int i=0;i<8;i++)
 				{
 					for(int j=0;j<8;j++)
 						if(posibleMoves[i][j]==1)
 						buttons[i][j].setBackground(Color.BLUE);
 				}
-				System.out.println(tempJButton.getName());
+				System.out.println(movePiece.getName());
 				}
 			}
 			else
 			{
 				JButton aux=((JButton)e.getSource());
-				if(aux.getName()!=tempJButton.getName())
+				if(aux.getName()!=movePiece.getName())
 				{
-				aux.setIcon(tempJButton.getIcon());
-				tempJButton.setIcon(null);
+				aux.setIcon(movePiece.getIcon());
+				movePiece.setIcon(null);
+				int pieceInitialPosition=Integer.parseInt(movePiece.getName());
+				int pieceNewPosition=Integer.parseInt(aux.getName());
+				int movedPiece;
+				movedPiece=gBoard.configBoard[pieceInitialPosition/10][pieceInitialPosition%10];
+				gBoard.configBoard[pieceInitialPosition/10][pieceInitialPosition%10]=0;
+				gBoard.configBoard[pieceNewPosition/10][pieceNewPosition%10]=movedPiece;
+				
+				Piece movedPieceObject=gBoard.mat[pieceInitialPosition/10][pieceInitialPosition%10];
+				gBoard.mat[pieceInitialPosition/10][pieceInitialPosition%10]=new NullPiece();
+				gBoard.mat[pieceNewPosition/10][pieceNewPosition%10]=movedPieceObject;
 				butActive=false;
 				drawBoardColors();
 				}

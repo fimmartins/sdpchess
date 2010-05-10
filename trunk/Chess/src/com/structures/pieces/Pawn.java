@@ -11,17 +11,25 @@ public class Pawn implements Piece{
 	}
 	public int[][] posibleMove(int pTurn,int iPosition,int jPosition,int[][] boardConfiguration)
 	{
-	int[][] pawnMove=new int[8][8];
-	if(pTurn/10==1)
-	{
-	 pawnMove[iPosition+1][jPosition]=1;	
-	}
-	else
+		System.out.println();
+		for(int i=0;i<8;i++)
+		{
+			for(int j=0;j<8;j++)
+			{
+			System.out.print(boardConfiguration[i][j]+" ");
+			}
+			System.out.println();
+		}
+		int[][] pawnMove=new int[8][8];
+		if(pTurn/10==1)
+		{
+			pawnMove[iPosition+1][jPosition]=1;	
+		}
 		if(pTurn/10==2)
 		{
 			pawnMove[iPosition-1][jPosition]=1;	
 		}
-	return pawnMove;
+		return pawnMove;
 	}
 	public ImageIcon icon()
 	{
@@ -29,5 +37,5 @@ public class Pawn implements Piece{
 		if(player==1) return im.getIcon("/piese/wp.png");
 		return im.getIcon("/piese/bp.png");
 	}
-	
+
 }

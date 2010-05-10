@@ -13,7 +13,7 @@ public int[][] configBoard = {
 	    { 25,22,23,28,29,23,22,25}};
 public Board()
 {
-updateTable();
+initComponents();
 }
 public int[][] getConfiguration()
 {
@@ -33,7 +33,7 @@ private Piece partID(int player,int id)
   return new NullPiece();
 	  
 }
-private void updateTable()
+private void initComponents()
 {
 	for(int i=0;i<8;i++)
 		for(int j=0;j<8;j++)
