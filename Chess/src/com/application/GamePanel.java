@@ -11,7 +11,7 @@ public class GamePanel extends JPanel{
 	Game game=new Game();
 	JButton[][] buttons=new JButton[8][8];
 	JButton movePiece=new JButton();
-	boolean butActive=false;
+	boolean moveIsActive=false;
 	
 	public GamePanel()
 	{
@@ -67,11 +67,11 @@ public class GamePanel extends JPanel{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			if(!butActive)
+			if(!moveIsActive)
 			{
 				if(((JButton)e.getSource()).getIcon()!=null)
 				{
-					butActive=true;
+					moveIsActive=true;
 					movePiece=((JButton)e.getSource());
 					int position=Integer.parseInt(movePiece.getName());
 					int [][] posibleMoves;
@@ -95,7 +95,7 @@ public class GamePanel extends JPanel{
 					int pieceInitialPosition=Integer.parseInt(movePiece.getName());
 					int pieceNewPosition=Integer.parseInt(aux.getName());
 					game.movePiece(pieceInitialPosition, pieceNewPosition);
-					butActive=false;
+					moveIsActive=false;
 					drawBoardColors();
 				}
 			}
