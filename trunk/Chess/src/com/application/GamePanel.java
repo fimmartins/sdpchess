@@ -10,7 +10,7 @@ public class GamePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	Game game=new Game();
 	JButton[][] buttons=new JButton[8][8];
-	JButton movePiece=new JButton();
+	JButton movingPiece=new JButton();
 	boolean moveIsActive=false;
 	
 	public GamePanel()
@@ -69,11 +69,12 @@ public class GamePanel extends JPanel{
 		{
 			if(!moveIsActive)
 			{
-				if(((JButton)e.getSource()).getIcon()!=null)
+				movingPiece=((JButton)e.getSource());
+				int position=Integer.parseInt(movingPiece.getName());
+				if(game.getPiece(position/10,position%10)!=0)
 				{
 					moveIsActive=true;
-					movePiece=((JButton)e.getSource());
-					int position=Integer.parseInt(movePiece.getName());
+					
 					int [][] posibleMoves;
 					posibleMoves=game.getPiecePosibleMove(position/10, position%10);
 					for(int i=0;i<8;i++)
@@ -82,21 +83,25 @@ public class GamePanel extends JPanel{
 							if(posibleMoves[i][j]==1)
 								buttons[i][j].setBackground(Color.BLUE);
 					}
-					System.out.println(movePiece.getName());
+					System.out.println(movingPiece.getName());
 				}
 			}
 			else
 			{
 				JButton aux=((JButton)e.getSource());
-				if(aux.getName()!=movePiece.getName())
+				if(aux.getName()!=movingPiece.getName())
 				{
-					aux.setIcon(movePiece.getIcon());
-					movePiece.setIcon(null);
-					int pieceInitialPosition=Integer.parseInt(movePiece.getName());
+					
+					int pieceInitialPosition=Integer.parseInt(movingPiece.getName());
 					int pieceNewPosition=Integer.parseInt(aux.getName());
+					if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]!=0)
+					{
+					aux.setIcon(movingPiece.getIcon());
 					game.movePiece(pieceInitialPosition, pieceNewPosition);
+					movingPiece.setIcon(null);
 					moveIsActive=false;
 					drawBoardColors();
+					}
 				}
 			}
 

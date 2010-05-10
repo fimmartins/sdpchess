@@ -32,4 +32,8 @@ public class Game{
 		gBoard.mat[pieceInitialPosition/10][pieceInitialPosition%10]=new NullPiece();
 		gBoard.mat[pieceNewPosition/10][pieceNewPosition%10]=movedPieceObject;
 	}
+	public int getPiece(int i,int j)
+	{
+		return gBoard.configBoard[i][j];
+	}
 	}
