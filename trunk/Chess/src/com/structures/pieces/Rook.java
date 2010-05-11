@@ -15,10 +15,13 @@ public class Rook implements Piece{
 	for(int i=0;i<rookMove.length;i++)
 		for(int j=0;j<rookMove[0].length;j++)
 		{
+			if(boardConfiguration[i][j]==0)
+			{
 			if(iPosition==i)
 				rookMove[i][j]=1;
 			if(jPosition==j)
 				rookMove[i][j]=1;
+			}
 		}
 	return rookMove;
 	}
