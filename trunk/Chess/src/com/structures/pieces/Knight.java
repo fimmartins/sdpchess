@@ -11,22 +11,34 @@ public class Knight implements Piece{
 	}
 	public int[][] posibleMove(int pTurn,int iPosition,int jPosition,int[][] boardConfiguration)
 	{
-	int[][] bishopMoves=new int[8][8];
-	for(int i=0;i<bishopMoves.length;i++)
-		for(int j=0;j<bishopMoves[0].length;j++)
+	int[][] knightMoves=new int[8][8];
+	for(int i=0;i<knightMoves.length;i++)
+		for(int j=0;j<knightMoves[0].length;j++)
 		{
-			int tmp=i*10+j;
-			int position=iPosition*10+jPosition;
-			if((position-tmp)%11==0) 
+			if(boardConfiguration[i][j]==0)
 			{
-				bishopMoves[i][j]=1;
-			}
-			if((position-tmp)%9==0)
-			{
-				bishopMoves[i][j]=1;
+			if((iPosition-2)==i && (jPosition-1)==j)
+				knightMoves[i][j]=1;
+			if((iPosition-2)==i && (jPosition+1)==j)
+				knightMoves[i][j]=1;
+			
+			if((iPosition+2)==i && (jPosition-1)==j)
+				knightMoves[i][j]=1;
+			if((iPosition+2)==i && (jPosition+1)==j)
+				knightMoves[i][j]=1;
+			
+			if((jPosition-2)==j && (iPosition-1)==i)
+				knightMoves[i][j]=1;
+			if((jPosition-2)==j && (iPosition+1)==i)
+				knightMoves[i][j]=1;
+			
+			if((jPosition+2)==j && (iPosition-1)==i)
+				knightMoves[i][j]=1;
+			if((jPosition+2)==j && (iPosition+1)==i)
+				knightMoves[i][j]=1;
 			}
 		}
-	return bishopMoves;
+	return knightMoves;
 	}
 	public ImageIcon icon()
 	{
