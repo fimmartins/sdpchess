@@ -13,8 +13,28 @@ public int[][] posibleMove(int pTurn,int iPosition,int jPosition,int[][] boardCo
 {
 int[][] bishopMove=new int[8][8];
 
-for(int i=2;i<iPosition;i++)
-	bishopMove[i][i+(jPosition-iPosition)]=1;
+
+for(int i=0;i<8;i++)
+	for(int j=0;j<8;j++)
+	{
+		//ST.SUS
+		if((i>=0 && i<iPosition)&&(j>=0 && j<jPosition))
+			if((i-j)==(iPosition-jPosition))
+				bishopMove[i][j]=1;
+		//DR.SUS
+		if((i>=0 && i<iPosition)&&(j>jPosition && j<=8))
+			if((i+j)==(iPosition+jPosition))
+				bishopMove[i][j]=1;
+		//ST.JOS
+		if((i>iPosition && i<=8)&&(j>=0 && j<jPosition))
+			if((i+j)==(iPosition+jPosition))
+				bishopMove[i][j]=1;
+		//DR.JOS
+		if((i>iPosition && i<=8)&&(j>jPosition && j<=8))
+			if((i-j)==(iPosition-jPosition))
+				bishopMove[i][j]=1;
+	}
+
 return bishopMove;
 }
 public ImageIcon icon()
