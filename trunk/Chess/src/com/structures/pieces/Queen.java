@@ -15,6 +15,8 @@ public class Queen implements Piece{
 	for(int i=0;i<8;i++)
 		for(int j=0;j<8;j++)
 		{
+			if(boardConfiguration[i][j]==0)
+			{
 			//ST.SUS
 			if((i>=0 && i<iPosition)&&(j>=0 && j<jPosition))
 				if((i-j)==(iPosition-jPosition))
@@ -35,6 +37,7 @@ public class Queen implements Piece{
 				queenMoves[i][j]=1;
 			if(j==jPosition)
 				queenMoves[i][j]=1;
+			}
 		}
 	return queenMoves;
 	}
