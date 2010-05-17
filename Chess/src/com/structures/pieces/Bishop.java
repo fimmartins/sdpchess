@@ -17,6 +17,8 @@ int[][] bishopMove=new int[8][8];
 for(int i=0;i<8;i++)
 	for(int j=0;j<8;j++)
 	{
+		if(boardConfiguration[i][j]==0)
+		{
 		//ST.SUS
 		if((i>=0 && i<iPosition)&&(j>=0 && j<jPosition))
 			if((i-j)==(iPosition-jPosition))
@@ -33,6 +35,7 @@ for(int i=0;i<8;i++)
 		if((i>iPosition && i<=8)&&(j>jPosition && j<=8))
 			if((i-j)==(iPosition-jPosition))
 				bishopMove[i][j]=1;
+		}
 	}
 
 return bishopMove;
