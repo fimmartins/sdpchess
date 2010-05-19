@@ -12,18 +12,38 @@ public class Rook implements Piece{
 	public int[][] posibleMove(int pTurn,int iPosition,int jPosition,int[][] boardConfiguration)
 	{
 	int[][] rookMove=new int[8][8];
-	for(int i=0;i<rookMove.length;i++)
-		for(int j=0;j<rookMove[0].length;j++)
-		{
-			if(boardConfiguration[i][j]==0)
-			{
-			if(iPosition==i)
-				rookMove[i][j]=1;
-			if(jPosition==j)
-				rookMove[i][j]=1;
-			}
-			
-		}
+	int p=0;
+	for(int i=iPosition-1;i>=0;i--)
+	{
+		if((boardConfiguration[i][jPosition]==0)&&(p==0))
+			rookMove[i][jPosition]=1;
+		else
+			p++;
+	}
+	p=0;
+	for(int i=iPosition+1;i<8;i++)
+	{
+		if((boardConfiguration[i][jPosition]==0)&&(p==0))
+			rookMove[i][jPosition]=1;
+		else
+			p++;
+	}
+	p=0;
+	for(int j=jPosition-1;j>=0;j--)
+	{
+		if((boardConfiguration[iPosition][j]==0)&&(p==0))
+			rookMove[iPosition][j]=1;
+		else
+			p++;
+	}
+	p=0;
+	for(int j=jPosition+1;j<8;j++)
+	{
+		if((boardConfiguration[iPosition][j]==0)&&(p==0))
+			rookMove[iPosition][j]=1;
+		else
+			p++;
+	}
 	return rookMove;
 	}
 	public ImageIcon icon()
