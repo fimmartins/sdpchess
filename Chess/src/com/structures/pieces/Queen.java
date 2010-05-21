@@ -27,6 +27,10 @@ public class Queen implements Piece{
 			{
 				p++;
 			}
+			if((p==1)&&(boardConfiguration[i][jPosition-k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition-k]%10!=9))
+			{
+				queenMoves[i][jPosition-k]=1;
+			}
 		}
 	}
 	p=0;
@@ -43,6 +47,10 @@ public class Queen implements Piece{
 			else
 			{
 				p++;
+			}
+			if((p==1)&&(boardConfiguration[i][jPosition+k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition+k]%10!=9))
+			{
+				queenMoves[i][jPosition+k]=1;
 			}
 		}
 	}
@@ -61,6 +69,10 @@ public class Queen implements Piece{
 			{
 				p++;
 			}
+			if((p==1)&&(boardConfiguration[i][jPosition-k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition-k]%10!=9))
+			{
+				queenMoves[i][jPosition-k]=1;
+			}
 		}
 	}
 	p=0;
@@ -77,6 +89,10 @@ public class Queen implements Piece{
 			else
 			{
 				p++;
+			}
+			if((p==1)&&(boardConfiguration[i][jPosition+k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition+k]%10!=9))
+			{
+				queenMoves[i][jPosition+k]=1;
 			}
 		}
 	}
@@ -95,6 +111,10 @@ public class Queen implements Piece{
 			queenMoves[i][jPosition]=1;
 		else
 			p++;
+		if(((p==1)&&(pTurn/10!=boardConfiguration[i][jPosition]/10))&&(boardConfiguration[i][jPosition]%10!=9))
+		{
+			queenMoves[i][jPosition]=1;
+		}
 	}
 	p=0;
 	for(int j=jPosition-1;j>=0;j--)
@@ -103,6 +123,10 @@ public class Queen implements Piece{
 			queenMoves[iPosition][j]=1;
 		else
 			p++;
+		if(((p==1)&&(pTurn/10!=boardConfiguration[iPosition][j]/10))&&(boardConfiguration[iPosition][j]%10!=9))
+		{
+			queenMoves[iPosition][j]=1;
+		}
 	}
 	p=0;
 	for(int j=jPosition+1;j<8;j++)
@@ -111,6 +135,10 @@ public class Queen implements Piece{
 			queenMoves[iPosition][j]=1;
 		else
 			p++;
+		if(((p==1)&&(pTurn/10!=boardConfiguration[iPosition][j]/10))&&(boardConfiguration[iPosition][j]%10!=9))
+		{
+			queenMoves[iPosition][j]=1;
+		}
 	}
 	return queenMoves;
 	}

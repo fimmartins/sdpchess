@@ -19,6 +19,10 @@ public class Rook implements Piece{
 			rookMove[i][jPosition]=1;
 		else
 			p++;
+		if(((p==1)&&(pTurn/10!=boardConfiguration[i][jPosition]/10))&&(boardConfiguration[i][jPosition]%10!=9))
+		{
+			rookMove[i][jPosition]=1;
+		}
 	}
 	p=0;
 	for(int i=iPosition+1;i<8;i++)
@@ -27,6 +31,10 @@ public class Rook implements Piece{
 			rookMove[i][jPosition]=1;
 		else
 			p++;
+		if(((p==1)&&(pTurn/10!=boardConfiguration[i][jPosition]/10))&&(boardConfiguration[i][jPosition]%10!=9))
+		{
+			rookMove[i][jPosition]=1;
+		}
 	}
 	p=0;
 	for(int j=jPosition-1;j>=0;j--)
@@ -35,6 +43,10 @@ public class Rook implements Piece{
 			rookMove[iPosition][j]=1;
 		else
 			p++;
+		if(((p==1)&&(pTurn/10!=boardConfiguration[iPosition][j]/10))&&(boardConfiguration[iPosition][j]%10!=9))
+		{
+			rookMove[iPosition][j]=1;
+		}
 	}
 	p=0;
 	for(int j=jPosition+1;j<8;j++)
@@ -43,6 +55,10 @@ public class Rook implements Piece{
 			rookMove[iPosition][j]=1;
 		else
 			p++;
+		if(((p==1)&&(pTurn/10!=boardConfiguration[iPosition][j]/10))&&(boardConfiguration[iPosition][j]%10!=9))
+		{
+			rookMove[iPosition][j]=1;
+		}
 	}
 	return rookMove;
 	}

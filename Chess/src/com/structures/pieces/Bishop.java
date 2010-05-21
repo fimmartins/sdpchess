@@ -15,7 +15,7 @@ int[][] bishopMove=new int[8][8];
 
 int p=0;
 int k=1;
-for(int i=iPosition-1;i>1;i--)
+for(int i=iPosition-1;i>=0;i--)
 {	
 	if(jPosition-k>=0)
 	{
@@ -28,6 +28,11 @@ for(int i=iPosition-1;i>1;i--)
 		{
 			p++;
 		}
+		if((p==1)&&(boardConfiguration[i][jPosition-k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition-k]%10!=9))
+		{
+			bishopMove[i][jPosition-k]=1;
+		}
+		
 	}
 }
 p=0;
@@ -45,6 +50,10 @@ for(int i=iPosition+1;i<8;i++)
 		{
 			p++;
 		}
+		if((p==1)&&(boardConfiguration[i][jPosition+k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition+k]%10!=9))
+		{
+			bishopMove[i][jPosition+k]=1;
+		}
 	}
 }
 p=0;
@@ -62,11 +71,15 @@ for(int i=iPosition+1;i<8;i++)
 		{
 			p++;
 		}
+		if((p==1)&&(boardConfiguration[i][jPosition-k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition-k]%10!=9))
+		{
+			bishopMove[i][jPosition-k]=1;
+		}
 	}
 }
 p=0;
 k=1;
-for(int i=iPosition-1;i>1;i--)
+for(int i=iPosition-1;i>=0;i--)
 {	
 	if(jPosition+k<=7)
 	{
@@ -78,6 +91,10 @@ for(int i=iPosition-1;i>1;i--)
 		else
 		{
 			p++;
+		}
+		if((p==1)&&(boardConfiguration[i][jPosition+k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition+k]%10!=9))
+		{
+			bishopMove[i][jPosition+k]=1;
 		}
 	}
 }
