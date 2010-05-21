@@ -22,12 +22,35 @@ public class Pawn implements Piece{
 		}
 		int[][] pawnMove=new int[8][8];
 		if(pTurn/10==1)
-		{
-			pawnMove[iPosition+1][jPosition]=1;	
-		}
+			{
+				if((iPosition==1)&&(boardConfiguration[iPosition+2][jPosition]==0))
+				{
+						pawnMove[iPosition+1][jPosition]=1;
+						pawnMove[iPosition+2][jPosition]=1;
+				}
+				else
+				{
+					
+					if(boardConfiguration[iPosition+1][jPosition]==0)
+					{
+					pawnMove[iPosition+1][jPosition]=1;
+					}
+				}
+			}
 		if(pTurn/10==2)
 		{
-			pawnMove[iPosition-1][jPosition]=1;	
+			if((iPosition==6)&&(boardConfiguration[iPosition-2][jPosition]==0))
+			{
+					pawnMove[iPosition-1][jPosition]=1;
+					pawnMove[iPosition-2][jPosition]=1;
+			}
+			else
+			{
+				if(boardConfiguration[iPosition-1][jPosition]==0)
+				{
+					pawnMove[iPosition-1][jPosition]=1;
+				}
+			}
 		}
 		return pawnMove;
 	}

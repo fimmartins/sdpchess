@@ -13,30 +13,75 @@ public int[][] posibleMove(int pTurn,int iPosition,int jPosition,int[][] boardCo
 {
 int[][] bishopMove=new int[8][8];
 
-
-for(int i=0;i<8;i++)
-	for(int j=0;j<8;j++)
+int p=0;
+int k=1;
+for(int i=iPosition-1;i>1;i--)
+{	
+	if(jPosition-k>=0)
 	{
-		if(boardConfiguration[i][j]==0)
+		if((boardConfiguration[i][jPosition-k]==0)&&(p==0))
 		{
-		//ST.SUS
-		if((i>=0 && i<iPosition)&&(j>=0 && j<jPosition))
-			if((i-j)==(iPosition-jPosition))
-				bishopMove[i][j]=1;
-		//DR.SUS
-		if((i>=0 && i<iPosition)&&(j>jPosition && j<=8))
-			if((i+j)==(iPosition+jPosition))
-				bishopMove[i][j]=1;
-		//ST.JOS
-		if((i>iPosition && i<=8)&&(j>=0 && j<jPosition))
-			if((i+j)==(iPosition+jPosition))
-				bishopMove[i][j]=1;
-		//DR.JOS
-		if((i>iPosition && i<=8)&&(j>jPosition && j<=8))
-			if((i-j)==(iPosition-jPosition))
-				bishopMove[i][j]=1;
+			bishopMove[i][jPosition-k]=1;
+			k++;
+		}
+		else
+		{
+			p++;
 		}
 	}
+}
+p=0;
+k=1;
+for(int i=iPosition+1;i<8;i++)
+{
+	if(jPosition+k<=7)
+	{
+		if((boardConfiguration[i][jPosition+k]==0)&&(p==0))
+		{
+			bishopMove[i][jPosition+k]=1;
+			k++;
+		}
+		else
+		{
+			p++;
+		}
+	}
+}
+p=0;
+k=1;
+for(int i=iPosition+1;i<8;i++)
+{
+	if(jPosition-k>=0)
+	{
+		if((boardConfiguration[i][jPosition-k]==0)&&(p==0))
+		{
+			bishopMove[i][jPosition-k]=1;
+			k++;
+		}
+		else
+		{
+			p++;
+		}
+	}
+}
+p=0;
+k=1;
+for(int i=iPosition-1;i>1;i--)
+{	
+	if(jPosition+k<=7)
+	{
+		if((boardConfiguration[i][jPosition+k]==0)&&(p==0))
+		{
+			bishopMove[i][jPosition+k]=1;
+			k++;
+		}
+		else
+		{
+			p++;
+		}
+	}
+}
+
 
 return bishopMove;
 }
