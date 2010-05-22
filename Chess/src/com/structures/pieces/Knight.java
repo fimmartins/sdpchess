@@ -15,7 +15,7 @@ public class Knight implements Piece{
 	for(int i=0;i<knightMoves.length;i++)
 		for(int j=0;j<knightMoves[0].length;j++)
 		{
-			if(boardConfiguration[i][j]==0)
+			if(((boardConfiguration[i][j]==0)||(boardConfiguration[i][j]/10!=pTurn/10))&&(boardConfiguration[i][j]%10!=9))
 			{
 			if((iPosition-2)==i && (jPosition-1)==j)
 				knightMoves[i][j]=1;
