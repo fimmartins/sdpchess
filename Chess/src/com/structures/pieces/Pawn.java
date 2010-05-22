@@ -36,6 +36,31 @@ public class Pawn implements Piece{
 					pawnMove[iPosition+1][jPosition]=1;
 					}
 				}
+				if((jPosition>0)&&(jPosition<7)) 
+				{
+					if((boardConfiguration[iPosition+1][jPosition-1]!=0)&&(boardConfiguration[iPosition+1][jPosition-1]/10!=1))
+					{
+						if(boardConfiguration[iPosition+1][jPosition-1]!=29)
+						pawnMove[iPosition+1][jPosition-1]=1;
+					}
+					if((boardConfiguration[iPosition+1][jPosition+1]!=0)&&(boardConfiguration[iPosition+1][jPosition+1]/10!=1))
+					{
+						if(boardConfiguration[iPosition+1][jPosition-1]!=29)
+						pawnMove[iPosition+1][jPosition+1]=1;
+					}
+				}
+				if((jPosition==7)&&(boardConfiguration[iPosition+1][jPosition-1]!=0)&&(boardConfiguration[iPosition+1][jPosition-1]/10!=1))
+				{
+					if(boardConfiguration[iPosition+1][jPosition-1]!=29)
+					pawnMove[iPosition+1][jPosition-1]=1;
+				}
+				if((jPosition==0)&&(boardConfiguration[iPosition+1][jPosition+1]!=0)&&(boardConfiguration[iPosition+1][jPosition+1]/10!=1))
+				{
+					if(boardConfiguration[iPosition+1][jPosition+1]!=29)
+					pawnMove[iPosition+1][jPosition+1]=1;
+				}
+				
+				
 			}
 		if(pTurn/10==2)
 		{
@@ -50,6 +75,30 @@ public class Pawn implements Piece{
 				{
 					pawnMove[iPosition-1][jPosition]=1;
 				}
+				if((jPosition>0)&&(jPosition<7)) 
+				{
+					if((boardConfiguration[iPosition-1][jPosition-1]!=0)&&(boardConfiguration[iPosition-1][jPosition-1]/10!=2))
+					{
+						if(boardConfiguration[iPosition-1][jPosition-1]!=19)
+						pawnMove[iPosition-1][jPosition-1]=1;
+					}
+					if((boardConfiguration[iPosition-1][jPosition+1]!=0)&&(boardConfiguration[iPosition-1][jPosition+1]/10!=2))
+					{
+						if(boardConfiguration[iPosition-1][jPosition+1]!=19)
+						pawnMove[iPosition-1][jPosition+1]=1;
+					}
+				}
+				if((jPosition==7)&&(boardConfiguration[iPosition-1][jPosition-1]!=0)&&(boardConfiguration[iPosition-1][jPosition-1]/10!=2))
+				{
+					if(boardConfiguration[iPosition-1][jPosition-1]!=19)
+					pawnMove[iPosition-1][jPosition-1]=1;
+				}
+				if((jPosition==0)&&(boardConfiguration[iPosition-1][jPosition+1]!=0)&&(boardConfiguration[iPosition-1][jPosition+1]/10!=2))
+				{
+					if(boardConfiguration[iPosition-1][jPosition+1]!=19)
+					pawnMove[iPosition-1][jPosition+1]=1;
+				}
+				
 			}
 		}
 		return pawnMove;
