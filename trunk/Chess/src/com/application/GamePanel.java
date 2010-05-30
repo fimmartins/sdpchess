@@ -8,11 +8,11 @@ import javax.swing.*;
 import com.structures.Game;
 public class GamePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
-	Game game=new Game();
-	JButton[][] buttons=new JButton[8][8];
-	JButton movingPiece=new JButton();
+	private Game game=Game.getGame();
+	private JButton[][] buttons=new JButton[8][8];
+	private JButton movingPiece=new JButton();
 	boolean moveIsActive=false;
-	
+
 	public GamePanel()
 	{
 		this.setSize(500, 500);
@@ -21,6 +21,11 @@ public class GamePanel extends JPanel{
 		panelGridLayout.setRows(8);
 		panelGridLayout.setColumns(8);
 		this.setLayout(panelGridLayout);
+		initiateGame();
+	}
+	private void initiateGame()
+	{
+		game.setPlayerTurn(1);
 		setPiecesOnBoard();
 	}
 	private void setPiecesOnBoard()
@@ -67,23 +72,33 @@ public class GamePanel extends JPanel{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+
 			if(!moveIsActive)
 			{
 				movingPiece=((JButton)e.getSource());
 				int position=Integer.parseInt(movingPiece.getName());
-				if(game.getPiece(position/10,position%10)!=0)
+				if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
 				{
-					moveIsActive=true;
-					
+
 					int [][] posibleMoves;
 					posibleMoves=game.getPiecePosibleMove(position/10, position%10);
+					int moveNr=0;
 					for(int i=0;i<8;i++)
 					{
 						for(int j=0;j<8;j++)
 							if(posibleMoves[i][j]==1)
+							{
 								buttons[i][j].setBackground(Color.BLUE);
+								moveNr++;
+							}
 					}
-					System.out.println(movingPiece.getName());
+					if(moveNr>0)
+						if(game.getPiece(position/10,position%10)!=0)
+						{
+							moveIsActive=true;
+
+							System.out.println(movingPiece.getName());
+						}
 				}
 			}
 			else
@@ -91,18 +106,22 @@ public class GamePanel extends JPanel{
 				JButton aux=((JButton)e.getSource());
 				if(aux.getName()!=movingPiece.getName())
 				{
-					
+
 					int pieceInitialPosition=Integer.parseInt(movingPiece.getName());
 					int pieceNewPosition=Integer.parseInt(aux.getName());
 					if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]!=0)
 					{
-					aux.setIcon(movingPiece.getIcon());
-					game.movePiece(pieceInitialPosition, pieceNewPosition);
-					movingPiece.setIcon(null);
-					moveIsActive=false;
-					drawBoardColors();
+						aux.setIcon(movingPiece.getIcon());
+						game.movePiece(pieceInitialPosition, pieceNewPosition);
+						movingPiece.setIcon(null);
+						moveIsActive=false;
+						drawBoardColors();
 					}
 				}
+				if(game.getPlayerTurn()==1)
+					game.setPlayerTurn(2);
+				else
+					game.setPlayerTurn(1);
 			}
 
 		}
