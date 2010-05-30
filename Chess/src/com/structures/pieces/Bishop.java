@@ -30,7 +30,7 @@ for(int i=iPosition-1;i>=0;i--)
 		}
 		if((p==1)&&(boardConfiguration[i][jPosition-k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition-k]%10!=9))
 		{
-			bishopMove[i][jPosition-k]=1;
+			bishopMove[i][jPosition-k]=2; 
 		}
 		
 	}
@@ -52,7 +52,7 @@ for(int i=iPosition+1;i<8;i++)
 		}
 		if((p==1)&&(boardConfiguration[i][jPosition+k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition+k]%10!=9))
 		{
-			bishopMove[i][jPosition+k]=1;
+			bishopMove[i][jPosition+k]=2; 
 		}
 	}
 }
@@ -73,7 +73,7 @@ for(int i=iPosition+1;i<8;i++)
 		}
 		if((p==1)&&(boardConfiguration[i][jPosition-k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition-k]%10!=9))
 		{
-			bishopMove[i][jPosition-k]=1;
+			bishopMove[i][jPosition-k]=2;
 		}
 	}
 }
@@ -94,7 +94,7 @@ for(int i=iPosition-1;i>=0;i--)
 		}
 		if((p==1)&&(boardConfiguration[i][jPosition+k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition+k]%10!=9))
 		{
-			bishopMove[i][jPosition+k]=1;
+			bishopMove[i][jPosition+k]=2;
 		}
 	}
 }

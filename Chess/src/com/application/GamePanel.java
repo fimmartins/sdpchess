@@ -11,6 +11,7 @@ public class GamePanel extends JPanel{
 	private JButton[][] buttons=new JButton[8][8];
 	private JButton movingPiece=new JButton();
 	private Subject updateGame=Subject.getSubject();
+	private LoadImagine loadImg=new LoadImagine();
 	boolean moveIsActive=false;
 
 	public GamePanel()
@@ -37,6 +38,7 @@ public class GamePanel extends JPanel{
 				buttons[i][j].setIcon(game.getPieceIcon(i, j));
 				buttons[i][j].addActionListener(this.new move());
 				buttons[i][j].setName(i+""+j);
+				buttons[i][j].setFocusPainted(false);
 				if(i%2==0)
 					if(j%2==0)
 						buttons[i][j].setBackground(Color.GRAY);
@@ -49,6 +51,7 @@ public class GamePanel extends JPanel{
 						buttons[i][j].setBackground(Color.GRAY);
 				this.add(buttons[i][j]);
 			}
+		//buttons[3][3].setIcon(loadImg.getIcon("/images/selected.png"));
 	}
 	private void drawBoardColors()
 	{
@@ -74,12 +77,18 @@ public class GamePanel extends JPanel{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-
+			JButton aux=((JButton)e.getSource());
+			int position=Integer.parseInt(aux.getName());
+			if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
+			{
+				drawBoardColors();
+				moveIsActive=false;
+			}
 			if(!moveIsActive)
 			{
 
 				movingPiece=((JButton)e.getSource());
-				int position=Integer.parseInt(movingPiece.getName());
+				position=Integer.parseInt(movingPiece.getName());
 				if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
 				{
 
@@ -90,9 +99,12 @@ public class GamePanel extends JPanel{
 					for(int i=0;i<8;i++)
 					{
 						for(int j=0;j<8;j++)
-							if(posibleMoves[i][j]==1)
+							if(posibleMoves[i][j]==1 || posibleMoves[i][j]==2)
 							{
+								if(posibleMoves[i][j]==1)
 								buttons[i][j].setBackground(new Color(9,121,206));
+								if(posibleMoves[i][j]==2)
+								buttons[i][j].setBackground(Color.RED);
 								moveNr++;
 							}
 					}
@@ -101,13 +113,15 @@ public class GamePanel extends JPanel{
 						{
 							moveIsActive=true;
 							movingPiece.setBorder(BorderFactory.createLineBorder(Color.RED));
+							//movingPiece.setIcon(loadImg.getIcon("/images/selected.png"));
+							//movingPiece.setSelectedIcon(loadImg.getIcon("/images/selected.png"));
 							System.out.println(movingPiece.getName());
 						}
 				}
 			}
 			else
 			{
-				JButton aux=((JButton)e.getSource());
+
 				if(aux.getName()!=movingPiece.getName())
 				{
 					int pieceInitialPosition=Integer.parseInt(movingPiece.getName());
@@ -126,6 +140,7 @@ public class GamePanel extends JPanel{
 						updateGame.notifyAllObservers();
 					}
 				}
+
 
 			}
 
