@@ -5,13 +5,20 @@ import com.structures.pieces.NullPiece;
 
 
 public class Game{
-
-	Board gBoard;
+	private static Game instance;
+	private Board gBoard;
+	private int playerTurn;
 	private static final long serialVersionUID = 1L;
 
-	public Game()
+	private Game()
 	{	
-		gBoard=new Board();
+		gBoard=Board.getBoard();
+	}
+	public static Game getGame()
+	{
+		if(instance==null)
+		instance=new Game();
+		return instance;
 	}
 	public ImageIcon getPieceIcon(int i,int j)
 	{
@@ -36,4 +43,11 @@ public class Game{
 	{
 		return gBoard.configBoard[i][j];
 	}
+	public int getPlayerTurn() {
+		return playerTurn;
+	}
+	public void setPlayerTurn(int playerTurn) {
+		this.playerTurn = playerTurn;
+	}
+	
 	}

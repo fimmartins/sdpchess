@@ -1,6 +1,7 @@
 package com.structures;
 import com.structures.pieces.*;
 public class Board {
+private static Board instance;
 public Piece[][] mat=new Piece[8][8];
 public int[][] configBoard = { 
 	    { 15,12,13,18,19,13,12,15}, 
@@ -11,9 +12,15 @@ public int[][] configBoard = {
 	    { 0, 0, 0, 0, 0, 0, 0, 0 },
 	    { 21,21,21,21,21,21,21,21}, 
 	    { 25,22,23,28,29,23,22,25}};
-public Board()
+private Board()
 {
 initComponents();
+}
+public static Board getBoard()
+{
+	if(instance==null)
+		instance=new Board();
+	return instance;
 }
 public int[][] getConfiguration()
 {
