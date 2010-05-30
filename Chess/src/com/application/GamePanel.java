@@ -11,7 +11,7 @@ public class GamePanel extends JPanel{
 	private JButton[][] buttons=new JButton[8][8];
 	private JButton movingPiece=new JButton();
 	private Subject updateGame=Subject.getSubject();
-	private LoadImagine loadImg=new LoadImagine();
+	//private LoadImagine loadImg=new LoadImagine();
 	boolean moveIsActive=false;
 
 	public GamePanel()
