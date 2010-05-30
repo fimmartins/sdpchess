@@ -1,5 +1,8 @@
 package com.application;
 import javax.swing.*;
+
+import com.structures.Subject;
+
 import java.awt.*;
 
 public class GUI extends JFrame{
@@ -8,13 +11,17 @@ public class GUI extends JFrame{
 	public GUI()
 	{
 
-		this.setSize(500, 500);
+		this.setSize(600, 500);
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.setRows(1);
-		gridLayout.setColumns(1);
+		gridLayout.setColumns(2);
 		this.setLayout(gridLayout);
 		GamePanel gp=new GamePanel();
+		StatusPanel sp=new StatusPanel();
 		this.add(gp);
+		this.add(sp);
+		Subject updateGame=Subject.getSubject();
+		updateGame.attach(sp);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		

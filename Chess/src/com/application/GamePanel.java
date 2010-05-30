@@ -3,14 +3,14 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-import com.structures.Game;
+import com.structures.*;
 public class GamePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private Game game=Game.getGame();
 	private JButton[][] buttons=new JButton[8][8];
 	private JButton movingPiece=new JButton();
+	private Subject updateGame=Subject.getSubject();
 	boolean moveIsActive=false;
 
 	public GamePanel()
@@ -55,6 +55,7 @@ public class GamePanel extends JPanel{
 		for(int i=0;i<buttons.length;i++)
 			for(int j=0;j<buttons.length;j++)
 			{
+				buttons[i][j].setBorder(new JButton().getBorder());
 				if(i%2==0)
 					if(j%2==0)
 						buttons[i][j].setBackground(Color.GRAY);
@@ -67,14 +68,16 @@ public class GamePanel extends JPanel{
 						buttons[i][j].setBackground(Color.GRAY);
 				this.add(buttons[i][j]);
 			}
+		
 	}
 	class move implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-
+			
 			if(!moveIsActive)
 			{
+				
 				movingPiece=((JButton)e.getSource());
 				int position=Integer.parseInt(movingPiece.getName());
 				if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
@@ -83,12 +86,13 @@ public class GamePanel extends JPanel{
 					int [][] posibleMoves;
 					posibleMoves=game.getPiecePosibleMove(position/10, position%10);
 					int moveNr=0;
+					
 					for(int i=0;i<8;i++)
 					{
 						for(int j=0;j<8;j++)
 							if(posibleMoves[i][j]==1)
 							{
-								buttons[i][j].setBackground(Color.BLUE);
+								buttons[i][j].setBackground(new Color(9,121,206));
 								moveNr++;
 							}
 					}
@@ -96,7 +100,7 @@ public class GamePanel extends JPanel{
 						if(game.getPiece(position/10,position%10)!=0)
 						{
 							moveIsActive=true;
-
+							movingPiece.setBorder(BorderFactory.createLineBorder(Color.RED));
 							System.out.println(movingPiece.getName());
 						}
 				}
@@ -122,6 +126,7 @@ public class GamePanel extends JPanel{
 					game.setPlayerTurn(2);
 				else
 					game.setPlayerTurn(1);
+				updateGame.notifyAllObservers();
 			}
 
 		}
