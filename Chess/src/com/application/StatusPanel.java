@@ -24,11 +24,17 @@ public class StatusPanel extends JPanel implements Observer{
 	private void addStats()
 	{
 		turn=new JLabel();
-		turn.setText("Player Turn: "+game.getPlayerTurn()+"");
+		if(game.getPlayerTurn()==1)
+			turn.setText("Player Turn: WHITE");
+		else
+			turn.setText("Player Turn: BLACK");
 		this.add(turn);
 	}
 	public void update(Subject s)
 	{
-		turn.setText("Player Turn: "+game.getPlayerTurn()+"");
+		if(game.getPlayerTurn()==1)
+			turn.setText("Player Turn: WHITE");
+		else
+			turn.setText("Player Turn: BLACK");
 	}
 }

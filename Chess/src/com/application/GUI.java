@@ -11,7 +11,8 @@ public class GUI extends JFrame{
 	public GUI()
 	{
 
-		this.setSize(600, 500);
+		this.setSize(1000, 500);
+		this.setLocationRelativeTo(null);
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.setRows(1);
 		gridLayout.setColumns(2);
