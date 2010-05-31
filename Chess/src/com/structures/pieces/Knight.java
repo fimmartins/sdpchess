@@ -17,27 +17,67 @@ public class Knight implements Piece{
 		{
 			if(((boardConfiguration[i][j]==0)||(boardConfiguration[i][j]/10!=pTurn/10))&&(boardConfiguration[i][j]%10!=9))
 			{
-			if((iPosition-2)==i && (jPosition-1)==j)
-				knightMoves[i][j]=1;
-			if((iPosition-2)==i && (jPosition+1)==j)
-				knightMoves[i][j]=1;
+				if((iPosition-2)==i && (jPosition-1)==j)
+				{
+					if((boardConfiguration[i][j]/10!=pTurn/10)&&(boardConfiguration[i][j]!=0))
+						knightMoves[i][j]=2;
+					else
+						knightMoves[i][j]=1;
+				}
+				if((iPosition-2)==i && (jPosition+1)==j)
+				{
+					if((boardConfiguration[i][j]/10!=pTurn/10)&&(boardConfiguration[i][j]!=0))
+						knightMoves[i][j]=2;
+					else
+						knightMoves[i][j]=1;
+				}
 			
-			if((iPosition+2)==i && (jPosition-1)==j)
-				knightMoves[i][j]=1;
-			if((iPosition+2)==i && (jPosition+1)==j)
-				knightMoves[i][j]=1;
+				if((iPosition+2)==i && (jPosition-1)==j)
+				{
+					if((boardConfiguration[i][j]/10!=pTurn/10)&&(boardConfiguration[i][j]!=0))
+						knightMoves[i][j]=2;
+					else
+						knightMoves[i][j]=1;
+				}
+				if((iPosition+2)==i && (jPosition+1)==j)
+				{
+					if((boardConfiguration[i][j]/10!=pTurn/10)&&(boardConfiguration[i][j]!=0))
+						knightMoves[i][j]=2;
+					else
+						knightMoves[i][j]=1;
+				}
 			
-			if((jPosition-2)==j && (iPosition-1)==i)
-				knightMoves[i][j]=1;
-			if((jPosition-2)==j && (iPosition+1)==i)
-				knightMoves[i][j]=1;
+				if((jPosition-2)==j && (iPosition-1)==i)
+				{
+					if((boardConfiguration[i][j]/10!=pTurn/10)&&(boardConfiguration[i][j]!=0))
+						knightMoves[i][j]=2;
+					else
+						knightMoves[i][j]=1;
+				}
+				if((jPosition-2)==j && (iPosition+1)==i)
+				{
+					if((boardConfiguration[i][j]/10!=pTurn/10)&&(boardConfiguration[i][j]!=0))
+						knightMoves[i][j]=2;
+					else
+						knightMoves[i][j]=1;
+				}
 			
-			if((jPosition+2)==j && (iPosition-1)==i)
-				knightMoves[i][j]=1;
-			if((jPosition+2)==j && (iPosition+1)==i)
-				knightMoves[i][j]=1;
+				if((jPosition+2)==j && (iPosition-1)==i)
+				{
+					if((boardConfiguration[i][j]/10!=pTurn/10)&&(boardConfiguration[i][j]!=0))
+						knightMoves[i][j]=2;
+					else
+						knightMoves[i][j]=1;
+				}
+				if((jPosition+2)==j && (iPosition+1)==i)
+				{
+					if((boardConfiguration[i][j]/10!=pTurn/10)&&(boardConfiguration[i][j]!=0))
+						knightMoves[i][j]=2;
+					else
+						knightMoves[i][j]=1;
+				}
 			}
-		}
+		}	
 	return knightMoves;
 	}
 	public ImageIcon icon()
