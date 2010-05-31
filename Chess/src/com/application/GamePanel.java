@@ -71,7 +71,6 @@ public class GamePanel extends JPanel{
 						buttons[i][j].setBackground(Color.GRAY);
 				this.add(buttons[i][j]);
 			}
-
 	}
 	class move implements ActionListener
 	{
@@ -86,7 +85,6 @@ public class GamePanel extends JPanel{
 			}
 			if(!moveIsActive)
 			{
-
 				movingPiece=((JButton)e.getSource());
 				position=Integer.parseInt(movingPiece.getName());
 				if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
@@ -121,7 +119,6 @@ public class GamePanel extends JPanel{
 			}
 			else
 			{
-
 				if(aux.getName()!=movingPiece.getName())
 				{
 					int pieceInitialPosition=Integer.parseInt(movingPiece.getName());
@@ -140,10 +137,7 @@ public class GamePanel extends JPanel{
 						updateGame.notifyAllObservers();
 					}
 				}
-
-
 			}
-
 		}
 	}
 }
