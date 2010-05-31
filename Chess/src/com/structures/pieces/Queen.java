@@ -14,7 +14,7 @@ public class Queen implements Piece{
 	int[][] queenMoves=new int[8][8];
 	int p=0;
 	int k=1;
-	for(int i=iPosition-1;i>1;i--)
+	for(int i=iPosition-1;i>=0;i--)
 	{	
 		if(jPosition-k>=0)
 		{
@@ -29,7 +29,7 @@ public class Queen implements Piece{
 			}
 			if((p==1)&&(boardConfiguration[i][jPosition-k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition-k]%10!=9))
 			{
-				queenMoves[i][jPosition-k]=1;
+				queenMoves[i][jPosition-k]=2;
 			}
 		}
 	}
@@ -50,7 +50,7 @@ public class Queen implements Piece{
 			}
 			if((p==1)&&(boardConfiguration[i][jPosition+k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition+k]%10!=9))
 			{
-				queenMoves[i][jPosition+k]=1;
+				queenMoves[i][jPosition+k]=2;
 			}
 		}
 	}
@@ -71,13 +71,13 @@ public class Queen implements Piece{
 			}
 			if((p==1)&&(boardConfiguration[i][jPosition-k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition-k]%10!=9))
 			{
-				queenMoves[i][jPosition-k]=1;
+				queenMoves[i][jPosition-k]=2;
 			}
 		}
 	}
 	p=0;
 	k=1;
-	for(int i=iPosition-1;i>1;i--)
+	for(int i=iPosition-1;i>=0;i--)
 	{	
 		if(jPosition+k<=7)
 		{
@@ -92,7 +92,7 @@ public class Queen implements Piece{
 			}
 			if((p==1)&&(boardConfiguration[i][jPosition+k]/10!=pTurn/10)&&(boardConfiguration[i][jPosition+k]%10!=9))
 			{
-				queenMoves[i][jPosition+k]=1;
+				queenMoves[i][jPosition+k]=2;
 			}
 		}
 	}
@@ -103,6 +103,10 @@ public class Queen implements Piece{
 			queenMoves[i][jPosition]=1;
 		else
 			p++;
+		if(((p==1)&&(pTurn/10!=boardConfiguration[i][jPosition]/10))&&(boardConfiguration[i][jPosition]%10!=9))
+		{
+			queenMoves[i][jPosition]=2;
+		}
 	}
 	p=0;
 	for(int i=iPosition+1;i<8;i++)
@@ -113,7 +117,7 @@ public class Queen implements Piece{
 			p++;
 		if(((p==1)&&(pTurn/10!=boardConfiguration[i][jPosition]/10))&&(boardConfiguration[i][jPosition]%10!=9))
 		{
-			queenMoves[i][jPosition]=1;
+			queenMoves[i][jPosition]=2;
 		}
 	}
 	p=0;
@@ -125,7 +129,7 @@ public class Queen implements Piece{
 			p++;
 		if(((p==1)&&(pTurn/10!=boardConfiguration[iPosition][j]/10))&&(boardConfiguration[iPosition][j]%10!=9))
 		{
-			queenMoves[iPosition][j]=1;
+			queenMoves[iPosition][j]=2;
 		}
 	}
 	p=0;
@@ -137,7 +141,7 @@ public class Queen implements Piece{
 			p++;
 		if(((p==1)&&(pTurn/10!=boardConfiguration[iPosition][j]/10))&&(boardConfiguration[iPosition][j]%10!=9))
 		{
-			queenMoves[iPosition][j]=1;
+			queenMoves[iPosition][j]=2;
 		}
 	}
 	return queenMoves;
