@@ -139,7 +139,29 @@ public class King implements Piece{
 					kingMove[iPosition+1][jPosition+1]=0;
 				}
 				
-			}		
+			}	
+			if((pTurn/10==1)&&(jPosition==4)&&(iPosition==0)&&(boardConfiguration[0][5]==0)&&
+			   (boardConfiguration[0][6]==0)&&(boardConfiguration[0][7]==15))
+				{
+					kingMove[0][6]=3;
+				}
+			if((pTurn/10==1)&&(jPosition==4)&&(iPosition==0)&&(boardConfiguration[0][3]==0)&&
+			   (boardConfiguration[0][2]==0)&&(boardConfiguration[0][1]==0)&&(boardConfiguration[0][0]==15))
+				{
+					kingMove[0][1]=3;
+				}
+			if((pTurn/10==2)&&(jPosition==3)&&(iPosition==7)&&(boardConfiguration[7][2]==0)&&
+			    (boardConfiguration[7][1]==0)&&(boardConfiguration[7][0]==15))
+				{
+					kingMove[7][1]=3;
+				}
+			if((pTurn/10==2)&&(jPosition==3)&&(iPosition==7)&&(boardConfiguration[7][4]==0)&&
+			   (boardConfiguration[7][5]==0)&&(boardConfiguration[7][6]==0)&&(boardConfiguration[7][7]==15))
+				{
+					kingMove[7][6]=3;
+				}
+			
+			
 	return kingMove;
 	}
 	public ImageIcon icon()
