@@ -25,8 +25,11 @@ public class Pawn implements Piece{
 			{
 				if((iPosition==1)&&(boardConfiguration[iPosition+2][jPosition]==0))
 				{
+					if(boardConfiguration[iPosition+1][jPosition]==0)
+					{
 						pawnMove[iPosition+1][jPosition]=1;
 						pawnMove[iPosition+2][jPosition]=1;
+					}
 				}
 				else
 				{
@@ -66,8 +69,11 @@ public class Pawn implements Piece{
 		{
 			if((iPosition==6)&&(boardConfiguration[iPosition-2][jPosition]==0))
 			{
+				if(boardConfiguration[iPosition-1][jPosition]==0)
+				{
 					pawnMove[iPosition-1][jPosition]=1;
 					pawnMove[iPosition-2][jPosition]=1;
+				}
 			}
 			else
 			{
