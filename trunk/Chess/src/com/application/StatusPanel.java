@@ -3,6 +3,8 @@ import java.awt.GridLayout;
 
 import javax.swing.*;
 import com.structures.*;
+import com.structures.observer.Observer;
+import com.structures.observer.Subject;
 public class StatusPanel extends JPanel implements Observer{
 	private static final long serialVersionUID = 1L;
 	private Game game=Game.getGame();

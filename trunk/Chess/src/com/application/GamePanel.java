@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import com.structures.*;
+import com.structures.observer.Subject;
 public class GamePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private Game game=Game.getGame();

@@ -1,7 +1,7 @@
 package com.application;
 import javax.swing.*;
 
-import com.structures.Subject;
+import com.structures.observer.Subject;
 
 import java.awt.*;
 

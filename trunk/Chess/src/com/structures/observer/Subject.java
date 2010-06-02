@@ -1,5 +1,6 @@
-package com.structures;
+package com.structures.observer;
 import java.util.*;
+
 public class Subject {
 	private ArrayList<Observer> observers;
 	private static Subject instance;
