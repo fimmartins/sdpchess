@@ -97,12 +97,14 @@ public class GamePanel extends JPanel{
 					for(int i=0;i<8;i++)
 					{
 						for(int j=0;j<8;j++)
-							if(posibleMoves[i][j]==1 || posibleMoves[i][j]==2)
+							if(posibleMoves[i][j]==1 || posibleMoves[i][j]==2 || posibleMoves[i][j]==3)
 							{
 								if(posibleMoves[i][j]==1)
-								buttons[i][j].setBackground(new Color(9,121,206));
+									buttons[i][j].setBackground(new Color(9,121,206));
 								if(posibleMoves[i][j]==2)
-								buttons[i][j].setBackground(Color.RED);
+									buttons[i][j].setBackground(Color.RED);
+								if(posibleMoves[i][j]==3)
+									buttons[i][j].setBackground(Color.ORANGE);
 								moveNr++;
 							}
 					}
@@ -123,8 +125,38 @@ public class GamePanel extends JPanel{
 				{
 					int pieceInitialPosition=Integer.parseInt(movingPiece.getName());
 					int pieceNewPosition=Integer.parseInt(aux.getName());
+					
+					
 					if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]!=0)
 					{
+						if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]==3)
+						{
+							if(pieceNewPosition==01)
+							{
+								game.movePiece(00, 02);
+								buttons[0][2].setIcon(buttons[0][0].getIcon());
+								buttons[0][0].setIcon(null);
+								
+							}
+							if(pieceNewPosition==06)
+							{
+								game.movePiece(07, 05);
+								buttons[0][5].setIcon(buttons[0][7].getIcon());
+								buttons[0][7].setIcon(null);
+							}
+							if(pieceNewPosition==71)
+							{
+								game.movePiece(70, 72);
+								buttons[7][2].setIcon(buttons[7][0].getIcon());
+								buttons[7][0].setIcon(null);
+							}
+							if(pieceNewPosition==76)
+							{
+								game.movePiece(77, 75);
+								buttons[7][5].setIcon(buttons[7][7].getIcon());
+								buttons[7][7].setIcon(null);
+							}
+						}
 						aux.setIcon(movingPiece.getIcon());
 						game.movePiece(pieceInitialPosition, pieceNewPosition);
 						movingPiece.setIcon(null);
