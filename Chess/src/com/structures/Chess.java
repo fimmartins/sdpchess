@@ -1,5 +1,5 @@
 package com.structures;
 
-public class IsSah {
+public class Chess {
 
 }
