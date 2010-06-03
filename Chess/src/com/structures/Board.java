@@ -26,6 +26,14 @@ public int[][] getConfiguration()
 {
 	return configBoard;
 }
+public void setBoard(int[][] newBoard) {
+	if(configBoard.length==newBoard.length && configBoard[0].length==newBoard[0].length)
+	{
+		for(int i=0;i<configBoard.length;i++)
+			for(int j=0;j<configBoard[0].length;j++)
+				configBoard[i][j]=newBoard[i][j];
+	}
+}
 private Piece partID(int player,int id)
 {
   switch(id){
