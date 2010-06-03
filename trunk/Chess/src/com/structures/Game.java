@@ -2,11 +2,12 @@ package com.structures;
 import javax.swing.ImageIcon;
 
 import com.structures.pieces.NullPiece;
-
+import com.structures.command.*;
 
 public class Game{
 	private static Game instance;
 	private Board gBoard;
+	private HistoryBoard historyBoard=new HistoryBoard();
 	private int playerTurn;
 	public Chess verificasah;
 	private static final long serialVersionUID = 1L;
@@ -31,6 +32,7 @@ public class Game{
 	}
 	public void movePiece(int pieceInitialPosition,int pieceNewPosition)
 	{
+		historyBoard.addBoard(new HistoryEntry(playerTurn,gBoard.configBoard));
 		int movedPiece;
 		movedPiece=gBoard.configBoard[pieceInitialPosition/10][pieceInitialPosition%10];
 		gBoard.configBoard[pieceInitialPosition/10][pieceInitialPosition%10]=0;
