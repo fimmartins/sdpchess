@@ -3,9 +3,15 @@ package com.structures.command;
 public class TaskEntry {
 	private Task task;
 	private long timeLastDone;
-	public TaskEntry(Task task) {
+	private String name;
+	public TaskEntry(Task task,String name) {
 		this.task = task;
+		this.name = name;
 		this.timeLastDone = System.currentTimeMillis();
+	}
+	
+	public String getName() {
+		return name;
 	}
 	public Task getTask() {
 		return task;
