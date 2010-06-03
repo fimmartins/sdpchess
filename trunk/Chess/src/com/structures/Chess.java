@@ -19,7 +19,7 @@ public class Chess {
 		this.matRege=gBoard.mat[this.pozitRege.x][this.pozitRege.y].posibleMove(gBoard.configBoard[this.pozitRege.x][this.pozitRege.y],this.pozitRege.x,this.pozitRege.y,gBoard.configBoard);
 		verifica(Checkmat());
 	}
-	public int[][] Checkmat()
+	public int[][] Checkmat()//construieste matricea cu toate mutarile adversarului
 	{
 
 		int[][] tabla=gBoard.configBoard;
@@ -43,19 +43,19 @@ public class Chess {
 		}
 		System.out.println();
 	}
-	public int[][] puneinmatrice(int[][] mat1,int[][] mat2)
+	public int[][] puneinmatrice(int[][] mat1,int[][] mat2)//pune in matricea reuniuni mutarilor adversarului
 	{
 		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++)
 				if(mat2[i][j]!=0) mat1[i][j]=mat2[i][j];
 		return mat1;
 	}
-	private int otherplayer()
+	private int otherplayer()//returneaza id-ul adversarului
 	{
 		if (this.player==1) return 2;
 		else return 1;
 	}
-	private Coordonata getPozRege()
+	private Coordonata getPozRege()//returneaza pozitia regelui
 	{
 		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++)
@@ -66,30 +66,15 @@ public class Chess {
 	public void verifica(int[][] mat2){
 		if(mat2[this.pozitRege.x][this.pozitRege.y]==1){ this.check=true; System.out.println("ESTI IN SAH!");
 		mutariposibile(mat2);
-		if(this.nrmutari==0) {
+		getpiesemutabile();
+		if(this.nrmutari==0&&this.piesemutabile.size()==0) {
 			this.checkmate=true;
-			for(int i=0;i<8;i++)
-				for(int j=0;j<8;j++)
-					if(gBoard.configBoard[i][j]/10==this.player)
-					{
-						int[][] cfgBoard=this.gBoard.configBoard;
-						matmorf(i,j);
-						int[][] mati=Checkmat();
-						if(mati[this.pozitRege.x][this.pozitRege.y]==0)
-						{
-							this.checkmate=false;
-							piesemutabile.add(new Coordonata(i,j));
-
-						}
-						gBoard.configBoard=cfgBoard;
-
-					}
-
+            
 
 		}
 		}
 	}
-	public int[][] mutariposibile(int[][] mat2)
+	public int[][] mutariposibile(int[][] mat2)//returneaza matricea mutarilor posibile pt rege
 	{
 		int[][] mat1=this.matRege;
 		for(int i=0;i<8;i++)
@@ -110,6 +95,25 @@ public class Chess {
 					if(mat1[x][y]!=0) gBoard.configBoard[x][y]=gBoard.configBoard[i][j];
 
 	}
+	private void getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah
+	{
+		for(int i=0;i<8;i++)
+			for(int j=0;j<8;j++)
+				if(gBoard.configBoard[i][j]/10==this.player)
+				{
+					int[][] cfgBoard=this.gBoard.configBoard;
+					matmorf(i,j);
+					int[][] mati=Checkmat();
+					if(mati[this.pozitRege.x][this.pozitRege.y]==0)
+					{
+						piesemutabile.add(new Coordonata(i,j));
+
+					}
+					gBoard.configBoard=cfgBoard;
+
+				}
+	}
+	
 }
 class Coordonata{
 	public int x,y;
