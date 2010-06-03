@@ -16,9 +16,10 @@ public class UndoHistoryBoard {
 	public void addBoard(HistoryEntry x)
 	{
 		history.add(x);
-		/*System.out.println("************");
-		System.out.println(x.toString());
-		System.out.println("************");*/
+	}
+	public void resetHistoryBoard()
+	{
+		history.clear();
 	}
 	public HistoryEntry getBoard(int index)
 	{
