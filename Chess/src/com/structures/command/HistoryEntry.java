@@ -17,4 +17,16 @@ public class HistoryEntry {
 	public int[][] getConfigBoard() {
 		return configBoard;
 	}
+	public String toString()
+	{
+		String s="";
+		for(int i=0;i<configBoard.length;i++)
+		{
+			for(int j=0;j<configBoard[0].length;j++)
+				s=configBoard[i][j]+" ";
+			s+="\n";
+		}
+		return s;
+				
+	}
 }
