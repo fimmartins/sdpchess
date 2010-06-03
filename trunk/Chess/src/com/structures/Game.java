@@ -7,7 +7,7 @@ import com.structures.command.*;
 public class Game{
 	private static Game instance;
 	private Board gBoard;
-	private HistoryBoard historyBoard=new HistoryBoard();
+	private UndoHistoryBoard historyBoard;
 	private int playerTurn;
 	public Chess verificasah;
 	private static final long serialVersionUID = 1L;
@@ -15,6 +15,7 @@ public class Game{
 	private Game()
 	{	
 		gBoard=Board.getBoard();
+		historyBoard=UndoHistoryBoard.getHistoryBoard();
 	}
 	public static Game getGame()
 	{

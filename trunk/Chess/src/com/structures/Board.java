@@ -14,7 +14,7 @@ public int[][] configBoard = {
 	    { 25,22,23,29,28,23,22,25}};
 private Board()
 {
-initComponents();
+setPiecesOnBoard();
 }
 public static Board getBoard()
 {
@@ -33,6 +33,21 @@ public void setBoard(int[][] newBoard) {
 			for(int j=0;j<configBoard[0].length;j++)
 				configBoard[i][j]=newBoard[i][j];
 	}
+	setPiecesOnBoard();
+}
+public void resetBoard()
+{
+	int[][] resetBoard = { 
+		    { 15,12,13,18,19,13,12,15}, 
+		    { 11,11,11,11,11,11,11,11}, 
+		    { 0, 0, 0, 0, 0, 0, 0, 0 },
+		    { 0, 0, 0, 0, 0, 0, 0, 0 },
+		    { 0, 0, 0, 0, 0, 0, 0, 0 }, 
+		    { 0, 0, 0, 0, 0, 0, 0, 0 },
+		    { 21,21,21,21,21,21,21,21}, 
+		    { 25,22,23,29,28,23,22,25}};
+	setBoard(resetBoard);
+	setPiecesOnBoard();
 }
 private Piece partID(int player,int id)
 {
@@ -48,7 +63,7 @@ private Piece partID(int player,int id)
   return new NullPiece();
 	  
 }
-private void initComponents()
+private void setPiecesOnBoard()
 {
 	for(int i=0;i<8;i++)
 		for(int j=0;j<8;j++)

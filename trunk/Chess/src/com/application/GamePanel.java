@@ -7,6 +7,7 @@ import javax.swing.*;
 import com.structures.*;
 import com.structures.observer.Subject;
 public class GamePanel extends JPanel{
+	private static GamePanel instance;
 	private static final long serialVersionUID = 1L;
 	private Game game=Game.getGame();
 	private JButton[][] buttons=new JButton[8][8];
@@ -15,7 +16,7 @@ public class GamePanel extends JPanel{
 	//private LoadImagine loadImg=new LoadImagine();
 	boolean moveIsActive=false;
 
-	public GamePanel()
+	private GamePanel()
 	{
 		this.setSize(500, 500);
 		this.setVisible(true);
@@ -24,6 +25,14 @@ public class GamePanel extends JPanel{
 		panelGridLayout.setColumns(8);
 		this.setLayout(panelGridLayout);
 		initiateGame();
+	}
+	public static GamePanel getGamePanel()
+	{
+	if (instance==null)
+	{
+		instance=new GamePanel();
+	}
+	return instance;
 	}
 	private void initiateGame()
 	{
@@ -55,6 +64,25 @@ public class GamePanel extends JPanel{
 				this.add(buttons[i][j]);
 			}
 		//buttons[3][3].setIcon(loadImg.getIcon("/images/selected.png"));
+	}
+	public void resetPiecesOnBoard()
+	{
+		for(int i=0;i<buttons.length;i++)
+			for(int j=0;j<buttons.length;j++)
+			{
+				buttons[i][j].setIcon(game.getPieceIcon(i, j));
+				buttons[i][j].setName(i+""+j);
+				if(i%2==0)
+					if(j%2==0)
+						buttons[i][j].setBackground(Color.GRAY);
+					else
+						buttons[i][j].setBackground(Color.WHITE);
+				else
+					if(j%2==0)
+						buttons[i][j].setBackground(Color.WHITE);
+					else
+						buttons[i][j].setBackground(Color.GRAY);
+			}
 	}
 	private void drawBoardColors()
 	{
@@ -124,7 +152,7 @@ public class GamePanel extends JPanel{
 							movingPiece.setBorder(BorderFactory.createLineBorder(Color.RED));
 							//movingPiece.setIcon(loadImg.getIcon("/images/selected.png"));
 							//movingPiece.setSelectedIcon(loadImg.getIcon("/images/selected.png"));
-							System.out.println(movingPiece.getName());
+							//System.out.println(movingPiece.getName());
 						}
 				}
 			}

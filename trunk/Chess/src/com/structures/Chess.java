@@ -88,7 +88,7 @@ public class Chess {
 				if(mat1[i][j]!=0) if(mat2[i][j]==1) mat1[i][j]=0;
 				else this.nrmutari++;
 
-		System.out.println("MUTARI POSIBILE REGE");
+		//System.out.println("MUTARI POSIBILE REGE");
 		//afisare(mat1);
 		return mat1;
 	}

@@ -8,8 +8,14 @@ public class HistoryEntry {
 		configBoard=new int[cBoard.length][cBoard[0].length];
 		this.playerTurn=playerTurn;
 		for(int i=0;i<configBoard.length;i++)
+		{
 			for(int j=0;j<configBoard[0].length;j++)
+			{
 				configBoard[i][j]=cBoard[i][j];
+				//System.out.print(configBoard[i][j]+" ");
+			}
+			//System.out.println();
+		}
 	}
 	public int getPlayerTurn() {
 		return playerTurn;
@@ -20,10 +26,11 @@ public class HistoryEntry {
 	public String toString()
 	{
 		String s="";
+		s+=playerTurn+"\n";
 		for(int i=0;i<configBoard.length;i++)
 		{
 			for(int j=0;j<configBoard[0].length;j++)
-				s=configBoard[i][j]+" ";
+				s+=configBoard[i][j]+" ";
 			s+="\n";
 		}
 		return s;
