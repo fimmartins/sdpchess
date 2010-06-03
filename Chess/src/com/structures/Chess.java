@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Chess {
 	int player;
 	int nrmutari=0;
+	int[][]tablainitiala;
 	int[][] matRege=new int[8][8];
 	boolean check=false;
 	boolean checkmate=false;
@@ -14,23 +15,25 @@ public class Chess {
 	public Chess(int player,Board gBoard)
 	{
 		this.player=player;
-		this.gBoard=gBoard;
+		this.tablainitiala=gettabla(gBoard.configBoard);
 		this.pozitRege=getPozRege();
-		this.matRege=gBoard.mat[this.pozitRege.x][this.pozitRege.y].posibleMove(gBoard.configBoard[this.pozitRege.x][this.pozitRege.y],this.pozitRege.x,this.pozitRege.y,gBoard.configBoard);
+		this.gBoard=gBoard;
+		this.matRege=gBoard.mat[this.pozitRege.x][this.pozitRege.y].posibleMove(tablainitiala[this.pozitRege.x][this.pozitRege.y],this.pozitRege.x,this.pozitRege.y,tablainitiala);
 		verifica(Checkmat());
 	}
 	public int[][] Checkmat()//construieste matricea cu toate mutarile adversarului
 	{
 
-		int[][] tabla=gBoard.configBoard;
+		int[][] tabla=this.tablainitiala;
 		tabla[this.pozitRege.x][this.pozitRege.y]=0;
 		int[][] matinitial=new int[8][8];
 		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++)
-				if(gBoard.configBoard[i][j]/10==otherplayer())
-					matinitial=puneinmatrice(matinitial,gBoard.mat[i][j].posibleMove(tabla[i][j],i,j,tabla));
+				if(this.tablainitiala[i][j]/10==otherplayer())
+					matinitial=puneinmatrice(matinitial,this.gBoard.mat[i][j].posibleMove(tabla[i][j],i,j,tabla));
 		tabla[this.pozitRege.x][this.pozitRege.y]=this.player*10+9;
-		afisare(matinitial);
+		this.tablainitiala=tabla;
+		//afisare(matinitial);
 		return matinitial;
 	}
 	public void afisare(int[][] matchess)
@@ -59,7 +62,7 @@ public class Chess {
 	{
 		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++)
-				if(gBoard.configBoard[i][j]==this.player*10+9)return new Coordonata(i,j);
+				if(this.tablainitiala[i][j]==this.player*10+9)return new Coordonata(i,j);
 		return new Coordonata(0,0);	
 	}
 
@@ -83,25 +86,25 @@ public class Chess {
 				else this.nrmutari++;
 
 		System.out.println("MUTARI POSIBILE REGE");
-		afisare(mat1);
+		//afisare(mat1);
 		return mat1;
 	}
 	private void matmorf(int i,int j)
 	{
-		int[][] mat1=gBoard.mat[i][j].posibleMove(gBoard.configBoard[j][i],i,j,gBoard.configBoard);
+		int[][] mat1=this.gBoard.mat[i][j].posibleMove(tablainitiala[j][i],i,j,tablainitiala);
 		for(int x=0;x<8;x++)
 			for(int y=0;y<8;y++)
 				if(x!=this.pozitRege.x&&y!=this.pozitRege.y)
-					if(mat1[x][y]!=0) gBoard.configBoard[x][y]=gBoard.configBoard[i][j];
+					if(mat1[x][y]!=0) tablainitiala[x][y]=tablainitiala[i][j];
 
 	}
 	private void getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah
 	{
 		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++)
-				if(gBoard.configBoard[i][j]/10==this.player)
+				if(tablainitiala[i][j]/10==this.player)
 				{
-					int[][] cfgBoard=this.gBoard.configBoard;
+					int[][] cfgBoard=tablainitiala;
 					matmorf(i,j);
 					int[][] mati=Checkmat();
 					if(mati[this.pozitRege.x][this.pozitRege.y]==0)
@@ -109,10 +112,19 @@ public class Chess {
 						piesemutabile.add(new Coordonata(i,j));
 
 					}
-					gBoard.configBoard=cfgBoard;
+					tablainitiala=cfgBoard;
 
 				}
 	}
+	private int[][] gettabla(int[][] tabla)
+	{
+		int[][] tablainit=new int[8][8];
+		for(int i=0;i<8;i++)
+			for(int j=0;j<8;j++)
+				tablainit[i][j]=tabla[i][j];
+		return tablainit;
+	}
+	
 	
 }
 class Coordonata{
