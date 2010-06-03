@@ -29,8 +29,11 @@ public class Chess {
 		int[][] matinitial=new int[8][8];
 		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++)
-				if(this.tablainitiala[i][j]/10==otherplayer())
-					matinitial=puneinmatrice(matinitial,this.gBoard.mat[i][j].posibleMove(tabla[i][j],i,j,tabla));
+				if(this.tablainitiala[i][j]/10==otherplayer()){
+					if (this.tablainitiala[i][j]%10==1) matinitial=puneinmatrice(matinitial,pionmove(this.gBoard.mat[i][j].posibleMove(tabla[i][j],i,j,tabla),i,j));
+					else matinitial=puneinmatrice(matinitial,this.gBoard.mat[i][j].posibleMove(tabla[i][j],i,j,tabla));
+
+				}
 		tabla[this.pozitRege.x][this.pozitRege.y]=this.player*10+9;
 		this.tablainitiala=tabla;
 		//afisare(matinitial);
@@ -72,7 +75,7 @@ public class Chess {
 		getpiesemutabile();
 		if(this.nrmutari==0&&this.piesemutabile.size()==0) {
 			this.checkmate=true;
-            
+
 
 		}
 		}
@@ -124,8 +127,23 @@ public class Chess {
 				tablainit[i][j]=tabla[i][j];
 		return tablainit;
 	}
-	
-	
+	private int[][] pionmove(int[][] tabla,int i,int j)
+	{
+		if(i+1<8) if(tabla[i+1][j]==1) { tabla[i+1][j]=0;
+		if(j-1>0) tabla[i+1][j-1]=1;
+		if(j+1<8) tabla[i+1][j+1]=1;
+		if(i+2<8) tabla[i+2][j]=0;
+		}
+		if(i-1>0) if(tabla[i-1][j]==1) { tabla[i-1][j]=0;
+		if(j-1>0) tabla[i-1][j-1]=1;
+		if(j+1<8) tabla[i-1][j+1]=1;
+		if(i-2<8) tabla[i-2][j]=0;
+		}
+		return tabla;
+
+	}
+
+
 }
 class Coordonata{
 	public int x,y;
