@@ -32,6 +32,8 @@ public class GamePanel extends JPanel{
 	}
 	private void setPiecesOnBoard()
 	{
+
+
 		for(int i=0;i<buttons.length;i++)
 			for(int j=0;j<buttons.length;j++)
 			{
@@ -77,6 +79,7 @@ public class GamePanel extends JPanel{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+
 			JButton aux=((JButton)e.getSource());
 			int position=Integer.parseInt(aux.getName());
 			if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
@@ -92,7 +95,12 @@ public class GamePanel extends JPanel{
 				{
 
 					int [][] posibleMoves;
-					posibleMoves=game.getPiecePosibleMove(position/10, position%10);
+					
+					if(game.getPiece(position/10,position%10)%10==9)
+						posibleMoves=game.verificasah.mutariposibile(game.verificasah.Checkmat());
+					else
+						posibleMoves=game.getPiecePosibleMove(position/10, position%10);
+
 					int moveNr=0;
 
 					for(int i=0;i<8;i++)
@@ -126,8 +134,8 @@ public class GamePanel extends JPanel{
 				{
 					int pieceInitialPosition=Integer.parseInt(movingPiece.getName());
 					int pieceNewPosition=Integer.parseInt(aux.getName());
-					
-					
+
+
 					if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]!=0)
 					{
 						if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]==3)
@@ -137,7 +145,7 @@ public class GamePanel extends JPanel{
 								game.movePiece(00, 02);
 								buttons[0][2].setIcon(buttons[0][0].getIcon());
 								buttons[0][0].setIcon(null);
-								
+
 							}
 							if(pieceNewPosition==06)
 							{

@@ -8,6 +8,7 @@ public class Game{
 	private static Game instance;
 	private Board gBoard;
 	private int playerTurn;
+	public Chess verificasah;
 	private static final long serialVersionUID = 1L;
 
 	private Game()
@@ -48,6 +49,9 @@ public class Game{
 	}
 	public void setPlayerTurn(int playerTurn) {
 		this.playerTurn = playerTurn;
+		this.verificasah=new Chess(playerTurn,gBoard);
+		if (this.verificasah.checkmate) System.out.println("SAH MAT!");
+		else if(this.verificasah.check) System.out.println("ESTI IN SAH!"); 
 	}
 	
 	}
