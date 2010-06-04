@@ -10,7 +10,7 @@ package com.structures;
          boolean check=false; 
          boolean checkmate=false; 
          Coordonata pozitRege; 
-         ArrayList<String> piesemutabile=new ArrayList<String>(); 
+         ArrayList<Integer> piesemutabile=new ArrayList<Integer>(); 
          private Board gBoard; 
          public Chess(int player,Board gBoard) 
          { 
@@ -102,9 +102,9 @@ package com.structures;
                                          if(mat1[x][y]!=0) tablainitiala[x][y]=tablainitiala[i][j]; 
   
          } 
-         public ArrayList<String> getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah 
+         public ArrayList<Integer> getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah 
          { 
-        	 piesemutabile=new ArrayList<String>();
+        	 piesemutabile=new ArrayList<Integer>();
                  for(int i=0;i<8;i++) 
                          for(int j=0;j<8;j++) 
                                  if(tablainitiala[i][j]/10==this.player) 
@@ -114,7 +114,7 @@ package com.structures;
                                          int[][] mati=Checkmat(); 
                                          if(mati[this.pozitRege.x][this.pozitRege.y]==0) 
                                          { 
-                                                 piesemutabile.add(i+""+j); 
+                                                 piesemutabile.add(Integer.parseInt(i+""+j)); 
   
                                          } 
                                         this.tablainitiala=gettabla(cfgBoard); 

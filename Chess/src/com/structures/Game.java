@@ -9,6 +9,7 @@ public class Game{
 	private Board gBoard;
 	private UndoHistoryBoard historyBoard;
 	private int playerTurn;
+	private boolean gameover=false;
 	public Chess check;
 	private static final long serialVersionUID = 1L;
 
@@ -46,6 +47,14 @@ public class Game{
 		gBoard.mat[pieceInitialPosition/10][pieceInitialPosition%10]=new NullPiece();
 		gBoard.mat[pieceNewPosition/10][pieceNewPosition%10]=movedPieceObject;
 	}
+	public void setConfigBoardTo(int Position,int pieceId)
+	{
+		gBoard.configBoard[Position/10][Position%10]=pieceId;
+	}
+	public void setPieceTo(int Position,Piece piesa)
+	{
+		gBoard.mat[Position/10][Position%10]=piesa;
+	}
 	public int getPiece(int i,int j)
 	{
 		return gBoard.configBoard[i][j];
@@ -71,7 +80,14 @@ public class Game{
 			return true;
 		return false;
 	}
-	public ArrayList<String> getUncheckPieces()
+	
+	public boolean isGameover() {
+		return gameover;
+	}
+	public void setGameover(boolean gameover) {
+		this.gameover = gameover;
+	}
+	public ArrayList<Integer> getUncheckPieces()
 	{
 		check=new Chess(this.getPlayerTurn(),gBoard);
 		return check.getpiesemutabile();
