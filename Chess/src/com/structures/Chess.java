@@ -10,7 +10,7 @@ public class Chess {
 	boolean check=false;
 	boolean checkmate=false;
 	Coordonata pozitRege;
-	
+	public ArrayList<String> piesemutabile=new ArrayList<String>();
 	private Board gBoard;
 	public Chess(int player,Board gBoard)
 	{
@@ -74,7 +74,7 @@ public class Chess {
 		//System.out.println("ESTI IN SAH!");
 		mutariposibile(mat2);
 		getpiesemutabile();
-		if(this.nrmutari==0 && getpiesemutabile().size()==0) {
+		if(this.nrmutari==0 && piesemutabile.size()==0) {
 			this.checkmate=true;
 
 
@@ -102,28 +102,26 @@ public class Chess {
 					if(mat1[x][y]!=0) tablainitiala[x][y]=tablainitiala[i][j];
 
 	}
-	public ArrayList<Integer> getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah
-	{
-		ArrayList<Integer> piesemutabile=new ArrayList<Integer>();
-		for(int i=0;i<8;i++)
-			for(int j=0;j<8;j++)
-				if(tablainitiala[i][j]/10==this.player)
-				{
-					int[][] cfgBoard=tablainitiala;
-					matmorf(i,j);
-					int[][] mati=Checkmat();
-					if(mati[this.pozitRege.x][this.pozitRege.y]==0)
-					{
-						String x=i+j+"";
-						//System.out.println(x);
-						piesemutabile.add(Integer.getInteger(x));
+	 private void getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah 
+     { 
+             for(int i=0;i<8;i++) 
+                     for(int j=0;j<8;j++) 
+                             if(tablainitiala[i][j]/10==this.player) 
+                             { 
+                                     int[][] cfgBoard=tablainitiala; 
+                                     matmorf(i,j); 
+                                     int[][] mati=Checkmat(); 
+                                     if(mati[this.pozitRege.x][this.pozitRege.y]==0) 
+                                     { 
+                                    	 System.out.print("(i,j)="+i+j+"¦");
+                                             piesemutabile.add(i+j+""); 
 
-					}
-					tablainitiala=cfgBoard;
+                                     } 
+                                     tablainitiala=cfgBoard; 
 
-				}
-		return piesemutabile;
-	}
+                             } 
+     } 
+
 	private int[][] gettabla(int[][] tabla)
 	{
 		int[][] tablainit=new int[8][8];

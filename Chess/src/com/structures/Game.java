@@ -71,9 +71,9 @@ public class Game{
 			return true;
 		return false;
 	}
-	public ArrayList<Integer> getUncheckPieces()
+	public ArrayList<String> getUncheckPieces()
 	{
-		check=new Chess(this.getPlayerTurn(),gBoard);
-		return check.getpiesemutabile();
+		//check=new Chess(this.getPlayerTurn(),gBoard);
+		return check.piesemutabile;
 	}
 }
