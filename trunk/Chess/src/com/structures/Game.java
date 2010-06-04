@@ -1,6 +1,6 @@
 package com.structures;
 import javax.swing.ImageIcon;
-
+import java.util.*;
 import com.structures.pieces.NullPiece;
 import com.structures.command.*;
 
@@ -9,13 +9,14 @@ public class Game{
 	private Board gBoard;
 	private UndoHistoryBoard historyBoard;
 	private int playerTurn;
-	//public Chess check;
+	public Chess check;
 	private static final long serialVersionUID = 1L;
 
 	private Game()
 	{	
 		gBoard=Board.getBoard();
 		historyBoard=UndoHistoryBoard.getHistoryBoard();
+		
 	}
 	public static Game getGame()
 	{
@@ -30,7 +31,7 @@ public class Game{
 	public int[][] getPiecePosibleMove(int i,int j)
 	{
 		if(getPiece(i,j)%10==9)
-			return Chess.mutariposibile(Chess.Checkmat());
+			return check.mutariposibile(check.Checkmat());
 		return gBoard.mat[i][j].posibleMove(gBoard.configBoard[i][j],i,j, gBoard.configBoard);
 	}
 	public void movePiece(int pieceInitialPosition,int pieceNewPosition)
@@ -55,17 +56,24 @@ public class Game{
 	public void setPlayerTurn(int playerTurn) {
 		this.playerTurn = playerTurn;
 	}
-	/*
+	
 	public boolean isCheck()
 	{
+		check=new Chess(this.getPlayerTurn(),gBoard);
 		if(check.check)
 			return true;
 		return false;
 	}
 	public boolean isCheckMate()
 	{
+		check=new Chess(this.getPlayerTurn(),gBoard);
 		if (check.checkmate)
 			return true;
 		return false;
-	}*/
+	}
+	public ArrayList<Integer> getUncheckPieces()
+	{
+		check=new Chess(this.getPlayerTurn(),gBoard);
+		return check.getpiesemutabile();
+	}
 }
