@@ -18,15 +18,23 @@ public class King implements Piece{
 			if(((boardConfiguration[i][j]==0)||(boardConfiguration[i][j]/10!=pTurn/10)))	
 			{
 				if((i==iPosition)&&(j>=jPosition-1)&&(j<=jPosition+1)&&(j!=jPosition))
-					kingMove[i][j]=1;
+					if(((boardConfiguration[i][j]!=0)&&(boardConfiguration[i][j]/10!=pTurn/10)))
+						kingMove[i][j]=2;
+					else
+						kingMove[i][j]=1;
 				if((j==jPosition)&&(i>=iPosition-1)&&(i<=iPosition+1)&&(i!=iPosition))
-					kingMove[i][j]=1;
+					if(((boardConfiguration[i][j]!=0)&&(boardConfiguration[i][j]/10!=pTurn/10)))
+						kingMove[i][j]=2;
+					else
+						kingMove[i][j]=1;
 				if((i>=iPosition-1)&&(i<=iPosition+1)&&(i!=iPosition)&&(j>=jPosition-1)&&(j<=jPosition+1)&&(j!=jPosition))
-					kingMove[i][j]=1;
-			}
+					if(((boardConfiguration[i][j]!=0)&&(boardConfiguration[i][j]/10!=pTurn/10)))
+						kingMove[i][j]=2;
+					else
+						kingMove[i][j]=1;			}
 		}
 		//Mutarile sa nu se apropie de rege
-			if((jPosition-2>=0)&&(iPosition+2<8)&&(iPosition-2>=0))
+		/*	if((jPosition-2>=0)&&(iPosition+2<8)&&(iPosition-2>=0))
 			{
 				if(boardConfiguration[iPosition][jPosition-2]%10==9)	
 				{
@@ -139,7 +147,7 @@ public class King implements Piece{
 					kingMove[iPosition+1][jPosition+1]=0;
 				}
 				
-			}	
+			}	*/
 			
 			if((pTurn/10==1)&&(jPosition==4)&&(iPosition==0)&&(boardConfiguration[0][5]==0)&&
 			   (boardConfiguration[0][6]==0)&&(boardConfiguration[0][7]==15))
