@@ -109,7 +109,7 @@ package com.structures;
                          for(int j=0;j<8;j++) 
                                  if(tablainitiala[i][j]/10==this.player) 
                                  { 
-                                         int[][] cfgBoard=tablainitiala; 
+                                         int[][] cfgBoard=gettabla(this.tablainitiala); 
                                          matmorf(i,j); 
                                          int[][] mati=Checkmat(); 
                                          if(mati[this.pozitRege.x][this.pozitRege.y]==0) 
@@ -117,7 +117,7 @@ package com.structures;
                                                  piesemutabile.add(i+""+j); 
   
                                          } 
-                                         tablainitiala=cfgBoard; 
+                                        this.tablainitiala=gettabla(cfgBoard); 
   
                                  } 
                  return piesemutabile;
