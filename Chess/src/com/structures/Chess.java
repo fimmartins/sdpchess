@@ -104,6 +104,7 @@ package com.structures;
          } 
          public ArrayList<String> getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah 
          { 
+        	 piesemutabile=new ArrayList<String>();
                  for(int i=0;i<8;i++) 
                          for(int j=0;j<8;j++) 
                                  if(tablainitiala[i][j]/10==this.player) 
