@@ -204,9 +204,9 @@ public class GamePanel extends JPanel{
 						if (game.isCheck())
 						{
 							System.out.println("Esti in sah");
-							//ArrayList<String> moves=game.getUncheckPieces();
-							//for (int i=0;i<moves.size();i++)
-								//System.out.print(moves.get(i)+" ");
+							ArrayList<String> moves=game.getUncheckPieces();
+							for (int i=0;i<moves.size();i++)
+								System.out.print(moves.get(i)+" ");
 						if(game.isCheckMate())
 							System.out.println("Sah mat");
 						}
