@@ -29,6 +29,8 @@ public class Game{
 	}
 	public int[][] getPiecePosibleMove(int i,int j)
 	{
+		if(getPiece(i,j)%10==9)
+			return verificasah.mutariposibile(verificasah.Checkmat());
 		return gBoard.mat[i][j].posibleMove(gBoard.configBoard[i][j],i,j, gBoard.configBoard);
 	}
 	public void movePiece(int pieceInitialPosition,int pieceNewPosition)

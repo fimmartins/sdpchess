@@ -124,11 +124,11 @@ public class GamePanel extends JPanel{
 
 					int [][] posibleMoves;
 					
-					if(game.getPiece(position/10,position%10)%10==9)
+				    /*if(game.getPiece(position/10,position%10)%10==9)
 						posibleMoves=game.verificasah.mutariposibile(game.verificasah.Checkmat());
-					else
-						posibleMoves=game.getPiecePosibleMove(position/10, position%10);
-
+					else*/
+					
+					posibleMoves=game.getPiecePosibleMove(position/10, position%10);
 					int moveNr=0;
 
 					for(int i=0;i<8;i++)
