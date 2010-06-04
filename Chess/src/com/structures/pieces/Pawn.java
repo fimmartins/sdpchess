@@ -11,15 +11,6 @@ public class Pawn implements Piece{
 	}
 	public int[][] posibleMove(int pTurn,int iPosition,int jPosition,int[][] boardConfiguration)
 	{
-		/*System.out.println();
-		for(int i=0;i<8;i++)
-		{
-			for(int j=0;j<8;j++)
-			{
-			System.out.print(boardConfiguration[i][j]+" ");
-			}
-			System.out.println();
-		}*/
 		int[][] pawnMove=new int[8][8];
 		if(pTurn/10==1)
 			{
@@ -50,7 +41,7 @@ public class Pawn implements Piece{
 					if(iPosition+1<8)
 					if((boardConfiguration[iPosition+1][jPosition+1]!=0)&&(boardConfiguration[iPosition+1][jPosition+1]/10!=1))
 					{
-						if(boardConfiguration[iPosition+1][jPosition-1]!=29)
+						if(boardConfiguration[iPosition+1][jPosition+1]!=29)
 						pawnMove[iPosition+1][jPosition+1]=2;
 					}
 					
