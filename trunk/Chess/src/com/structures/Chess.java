@@ -113,8 +113,8 @@ public class Chess {
                                      int[][] mati=Checkmat(); 
                                      if(mati[this.pozitRege.x][this.pozitRege.y]==0) 
                                      { 
-                                    	 System.out.print("(i,j)="+i+j+"¦");
-                                             piesemutabile.add(i+j+""); 
+                                    	 System.out.print(""+i+j+" ");
+                                             piesemutabile.add(""+i+j); 
 
                                      } 
                                      tablainitiala=cfgBoard; 
