@@ -70,7 +70,8 @@ package com.structures;
          } 
   
          public void verifica(int[][] mat2){ 
-                 if(mat2[this.pozitRege.x][this.pozitRege.y]==1){ this.check=true; System.out.println("ESTI IN SAH!"); 
+                 if(mat2[this.pozitRege.x][this.pozitRege.y]==1){ this.check=true; 
+                 //System.out.println("ESTI IN SAH!"); 
                  mutariposibile(mat2); 
                  getpiesemutabile(); 
                  if(this.nrmutari==0&&this.piesemutabile.size()==0) { 
@@ -88,7 +89,7 @@ package com.structures;
                                  if(mat1[i][j]!=0) if(mat2[i][j]==1) mat1[i][j]=0; 
                                  else this.nrmutari++; 
   
-                 System.out.println("MUTARI POSIBILE REGE"); 
+                // System.out.println("MUTARI POSIBILE REGE"); 
                  //afisare(mat1); 
                  return mat1; 
          } 
