@@ -6,6 +6,7 @@ import com.structures.Game;
 import com.structures.observer.Subject;
 
 public class Undo implements Task{
+	
 private GamePanel gp=GamePanel.getGamePanel();
 private Board board=Board.getBoard();
 private Game game=Game.getGame();
