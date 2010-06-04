@@ -14,7 +14,7 @@ public class GamePanel extends JPanel{
 	private JButton[][] buttons=new JButton[8][8];
 	private JButton movingPiece=new JButton();
 	private Subject updateGame=Subject.getSubject();
-	private ArrayList<String> checkMovePiece=new ArrayList<String>();
+	private ArrayList<Integer> checkMovePiece;
 	//private LoadImagine loadImg=new LoadImagine();
 	boolean moveIsActive=false;
 
@@ -30,11 +30,11 @@ public class GamePanel extends JPanel{
 	}
 	public static GamePanel getGamePanel()
 	{
-	if (instance==null)
-	{
-		instance=new GamePanel();
-	}
-	return instance;
+		if (instance==null)
+		{
+			instance=new GamePanel();
+		}
+		return instance;
 	}
 	private void initiateGame()
 	{
@@ -109,111 +109,131 @@ public class GamePanel extends JPanel{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-
-			JButton aux=((JButton)e.getSource());
-			int position=Integer.parseInt(aux.getName());
-			if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
+			if(!game.isGameover())
 			{
-				drawBoardColors();
-				moveIsActive=false;
-			}
-			if(!moveIsActive)
-			{
-				movingPiece=((JButton)e.getSource());
-				position=Integer.parseInt(movingPiece.getName());
-				
+				JButton aux=((JButton)e.getSource());
+				int position=Integer.parseInt(aux.getName());
 				if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
 				{
-
-					int [][] posibleMoves;
-					posibleMoves=game.getPiecePosibleMove(position/10, position%10);
-					int moveNr=0;
-
-					for(int i=0;i<8;i++)
-					{
-						for(int j=0;j<8;j++)
-							if(posibleMoves[i][j]==1 || posibleMoves[i][j]==2 || posibleMoves[i][j]==3)
-							{
-								if(posibleMoves[i][j]==1)
-									buttons[i][j].setBackground(new Color(9,121,206));
-								if(posibleMoves[i][j]==2)
-									buttons[i][j].setBackground(Color.RED);
-								if(posibleMoves[i][j]==3)
-									buttons[i][j].setBackground(Color.ORANGE);
-								moveNr++;
-							}
-					}
-					if(moveNr>0)
-						if(game.getPiece(position/10,position%10)!=0)
+					drawBoardColors();
+					moveIsActive=false;
+				}
+				if(!moveIsActive)
+				{
+					movingPiece=((JButton)e.getSource());
+					position=Integer.parseInt(movingPiece.getName());
+					//System.out.println(position);
+					boolean canMove=false;
+					if(game.isCheck() && checkMovePiece.contains(position))
+						canMove=true;
+					if(!game.isCheck())
+						canMove=true;
+					
+					if(canMove)
+						if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
 						{
-							moveIsActive=true;
-							movingPiece.setBorder(BorderFactory.createLineBorder(Color.RED));
-							//movingPiece.setIcon(loadImg.getIcon("/images/selected.png"));
-							//movingPiece.setSelectedIcon(loadImg.getIcon("/images/selected.png"));
-							//System.out.println(movingPiece.getName());
+
+							int [][] posibleMoves;
+							posibleMoves=game.getPiecePosibleMove(position/10, position%10);
+							int moveNr=0;
+
+							for(int i=0;i<8;i++)
+							{
+								for(int j=0;j<8;j++)
+									if(posibleMoves[i][j]==1 || posibleMoves[i][j]==2 || posibleMoves[i][j]==3)
+									{
+										if(posibleMoves[i][j]==1)
+											buttons[i][j].setBackground(new Color(9,121,206));
+										if(posibleMoves[i][j]==2)
+											buttons[i][j].setBackground(Color.RED);
+										if(posibleMoves[i][j]==3)
+											buttons[i][j].setBackground(Color.ORANGE);
+										moveNr++;
+									}
+							}
+							if(moveNr>0)
+								if(game.getPiece(position/10,position%10)!=0)
+								{
+									moveIsActive=true;
+									movingPiece.setBorder(BorderFactory.createLineBorder(Color.RED));
+									//movingPiece.setIcon(loadImg.getIcon("/images/selected.png"));
+									//movingPiece.setSelectedIcon(loadImg.getIcon("/images/selected.png"));
+									//System.out.println(movingPiece.getName());
+								}
 						}
 				}
-			}
-			else
-			{
-				if(aux.getName()!=movingPiece.getName())
+				else
 				{
-					int pieceInitialPosition=Integer.parseInt(movingPiece.getName());
-					int pieceNewPosition=Integer.parseInt(aux.getName());
-
-
-					if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]!=0)
+					if(aux.getName()!=movingPiece.getName())
 					{
-						if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]==3)
-						{
-							if(pieceNewPosition==01)
-							{
-								game.movePiece(00, 02);
-								buttons[0][2].setIcon(buttons[0][0].getIcon());
-								buttons[0][0].setIcon(null);
+						int pieceInitialPosition=Integer.parseInt(movingPiece.getName());
+						int pieceNewPosition=Integer.parseInt(aux.getName());
 
-							}
-							if(pieceNewPosition==06)
-							{
-								game.movePiece(07, 05);
-								buttons[0][5].setIcon(buttons[0][7].getIcon());
-								buttons[0][7].setIcon(null);
-							}
-							if(pieceNewPosition==71)
-							{
-								game.movePiece(70, 72);
-								buttons[7][2].setIcon(buttons[7][0].getIcon());
-								buttons[7][0].setIcon(null);
-							}
-							if(pieceNewPosition==76)
-							{
-								game.movePiece(77, 75);
-								buttons[7][5].setIcon(buttons[7][7].getIcon());
-								buttons[7][7].setIcon(null);
-							}
-						}
-						aux.setIcon(movingPiece.getIcon());
-						game.movePiece(pieceInitialPosition, pieceNewPosition);
-						movingPiece.setIcon(null);
-						moveIsActive=false;
-						drawBoardColors();
-						if(game.getPlayerTurn()==1)
-							game.setPlayerTurn(2);
-						else
-							game.setPlayerTurn(1);
-						
-						if (game.isCheck())
+
+						if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]!=0)
 						{
-							System.out.println("Esti in sah");
-							ArrayList<String> moves=game.getUncheckPieces();
-							System.out.println("Inceput::");
-							for (int i=0;i<moves.size();i++)
-								System.out.print(moves.get(i)+" ");
-							System.out.println("::Sfarsit");
-						if(game.isCheckMate())
-							System.out.println("Sah mat");
+							if(game.getPiecePosibleMove(pieceInitialPosition/10,pieceInitialPosition%10)[pieceNewPosition/10][pieceNewPosition%10]==3)
+							{
+								if(pieceNewPosition==01)
+								{
+									game.movePiece(00, 02);
+									buttons[0][2].setIcon(buttons[0][0].getIcon());
+									buttons[0][0].setIcon(null);
+
+								}
+								if(pieceNewPosition==06)
+								{
+									game.movePiece(07, 05);
+									buttons[0][5].setIcon(buttons[0][7].getIcon());
+									buttons[0][7].setIcon(null);
+								}
+								if(pieceNewPosition==71)
+								{
+									game.movePiece(70, 72);
+									buttons[7][2].setIcon(buttons[7][0].getIcon());
+									buttons[7][0].setIcon(null);
+								}
+								if(pieceNewPosition==76)
+								{
+									game.movePiece(77, 75);
+									buttons[7][5].setIcon(buttons[7][7].getIcon());
+									buttons[7][7].setIcon(null);
+								}
+							}
+							aux.setIcon(movingPiece.getIcon());
+							game.movePiece(pieceInitialPosition, pieceNewPosition);
+							movingPiece.setIcon(null);
+							
+							if(game.getPiece(pieceNewPosition/10, pieceNewPosition%10)%10==1 && ( (pieceNewPosition/10==7 && game.getPlayerTurn()==1) || (pieceNewPosition/10==0 && game.getPlayerTurn()==2)) )
+							{
+								
+								SelectPieceFrame spf=new SelectPieceFrame();
+								spf.setAlwaysOnTop(true);
+								aux.setIcon(spf.getNewPiece().icon());
+								game.setConfigBoardTo(pieceNewPosition, spf.getIdPiece());
+								game.setPieceTo(pieceNewPosition, spf.getNewPiece());
+							}
+							moveIsActive=false;
+							drawBoardColors();
+							if(game.getPlayerTurn()==1)
+								game.setPlayerTurn(2);
+							else
+								game.setPlayerTurn(1);
+
+							if (game.isCheck())
+							{
+								//System.out.println("Check");
+								checkMovePiece=game.getUncheckPieces();
+								for(int i=0;i<checkMovePiece.size();i++)
+									System.out.print(checkMovePiece.get(i)+" ");
+								if(game.isCheckMate())
+								{
+									game.setGameover(true);
+									//System.out.println("Check Mate");
+								}
+							}
+							updateGame.notifyAllObservers();
 						}
-						updateGame.notifyAllObservers();
 					}
 				}
 			}
