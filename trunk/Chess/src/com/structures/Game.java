@@ -9,7 +9,7 @@ public class Game{
 	private Board gBoard;
 	private UndoHistoryBoard historyBoard;
 	private int playerTurn;
-	public Chess verificasah;
+	//public Chess check;
 	private static final long serialVersionUID = 1L;
 
 	private Game()
@@ -20,7 +20,7 @@ public class Game{
 	public static Game getGame()
 	{
 		if(instance==null)
-		instance=new Game();
+			instance=new Game();
 		return instance;
 	}
 	public ImageIcon getPieceIcon(int i,int j)
@@ -30,7 +30,7 @@ public class Game{
 	public int[][] getPiecePosibleMove(int i,int j)
 	{
 		if(getPiece(i,j)%10==9)
-			return verificasah.mutariposibile(verificasah.Checkmat());
+			return Chess.mutariposibile(Chess.Checkmat());
 		return gBoard.mat[i][j].posibleMove(gBoard.configBoard[i][j],i,j, gBoard.configBoard);
 	}
 	public void movePiece(int pieceInitialPosition,int pieceNewPosition)
@@ -54,9 +54,18 @@ public class Game{
 	}
 	public void setPlayerTurn(int playerTurn) {
 		this.playerTurn = playerTurn;
-		this.verificasah=new Chess(playerTurn,gBoard);
-		if (this.verificasah.checkmate) System.out.println("SAH MAT!");
-		else if(this.verificasah.check) System.out.println("ESTI IN SAH!"); 
 	}
-	
+	/*
+	public boolean isCheck()
+	{
+		if(check.check)
+			return true;
+		return false;
 	}
+	public boolean isCheckMate()
+	{
+		if (check.checkmate)
+			return true;
+		return false;
+	}*/
+}

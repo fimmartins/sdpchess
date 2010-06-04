@@ -119,15 +119,11 @@ public class GamePanel extends JPanel{
 			{
 				movingPiece=((JButton)e.getSource());
 				position=Integer.parseInt(movingPiece.getName());
+				
 				if(game.getPlayerTurn()==game.getPiece(position/10,position%10)/10)
 				{
 
 					int [][] posibleMoves;
-					
-				    /*if(game.getPiece(position/10,position%10)%10==9)
-						posibleMoves=game.verificasah.mutariposibile(game.verificasah.Checkmat());
-					else*/
-					
 					posibleMoves=game.getPiecePosibleMove(position/10, position%10);
 					int moveNr=0;
 
@@ -203,6 +199,15 @@ public class GamePanel extends JPanel{
 							game.setPlayerTurn(2);
 						else
 							game.setPlayerTurn(1);
+						if (Chess.isCheck())
+						{
+							System.out.println("Esti in sah");
+						if(Chess.isCheckMate())
+							System.out.println("Sah mat");
+						}
+						else
+							System.out.println("Nu e sah");
+						System.out.println(Chess.getpiesemutabile().size());
 						updateGame.notifyAllObservers();
 					}
 				}
