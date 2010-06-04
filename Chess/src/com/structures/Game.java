@@ -73,7 +73,7 @@ public class Game{
 	}
 	public ArrayList<String> getUncheckPieces()
 	{
-		//check=new Chess(this.getPlayerTurn(),gBoard);
+		check=new Chess(this.getPlayerTurn(),gBoard);
 		return check.piesemutabile;
 	}
 }
