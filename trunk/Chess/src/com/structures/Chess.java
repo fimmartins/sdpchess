@@ -102,7 +102,7 @@ public class Chess {
 					if(mat1[x][y]!=0) tablainitiala[x][y]=tablainitiala[i][j];
 
 	}
-	 private void getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah 
+	 public ArrayList<String> getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah 
      { 
              for(int i=0;i<8;i++) 
                      for(int j=0;j<8;j++) 
@@ -113,13 +113,13 @@ public class Chess {
                                      int[][] mati=Checkmat(); 
                                      if(mati[this.pozitRege.x][this.pozitRege.y]==0) 
                                      { 
-                                    	 System.out.print(""+i+j+" ");
-                                             piesemutabile.add(""+i+j); 
+                                    	// System.out.print(""+i+j+" ");
+                                             piesemutabile.add(i+""+j); 
 
                                      } 
                                      tablainitiala=cfgBoard; 
-
                              } 
+             return piesemutabile;
      } 
 
 	private int[][] gettabla(int[][] tabla)
