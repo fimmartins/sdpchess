@@ -1,6 +1,8 @@
 package com.structures.command;
 
-public class HistoryEntry {
+public class HistoryEntry implements java.io.Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private int playerTurn;
 	private int[][] configBoard;
 	public HistoryEntry(int playerTurn,int[][] cBoard)

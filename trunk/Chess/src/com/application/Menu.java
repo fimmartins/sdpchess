@@ -12,6 +12,7 @@ public class Menu extends JMenuBar {
 	private Undo undoTask;
 	private Redo redoTask;
 	private NewGame newGameTask;
+	private Save saveTask;
 	public Menu()
 	{
 		initMenu();
@@ -22,10 +23,12 @@ public class Menu extends JMenuBar {
 		redoTask=new Redo();
 		undoTask=new Undo();
 		newGameTask=new NewGame();
+		saveTask=new Save();
 		
 		task.addTask(undoTask,"Undo");
 		task.addTask(redoTask, "Redo");
 		task.addTask(newGameTask, "New");
+		task.addTask(saveTask, "Save");
 		
 		game=new JMenu("Game");
 		edit=new JMenu("Edit");
@@ -38,6 +41,7 @@ public class Menu extends JMenuBar {
 		undo.addActionListener(this.new undoListener());
 		redo.addActionListener(this.new redoListener());
 		newGame.addActionListener(this.new newListener());
+		save.addActionListener(this.new saveListener());
 		
 		game.add(newGame);
 		game.add(save);
@@ -64,6 +68,12 @@ public class Menu extends JMenuBar {
 	{
 	 public void actionPerformed(ActionEvent e) {
 	        task.doTask("New");
+	    }
+	}
+	class saveListener implements ActionListener
+	{
+	 public void actionPerformed(ActionEvent e) {
+	        task.doTask("Save");
 	    }
 	}
 
