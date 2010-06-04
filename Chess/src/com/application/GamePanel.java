@@ -14,6 +14,7 @@ public class GamePanel extends JPanel{
 	private JButton[][] buttons=new JButton[8][8];
 	private JButton movingPiece=new JButton();
 	private Subject updateGame=Subject.getSubject();
+	private ArrayList<String> checkMovePiece=new ArrayList<String>();
 	//private LoadImagine loadImg=new LoadImagine();
 	boolean moveIsActive=false;
 
@@ -212,7 +213,6 @@ public class GamePanel extends JPanel{
 						if(game.isCheckMate())
 							System.out.println("Sah mat");
 						}
-					//	System.out.println(Chess.getpiesemutabile().size());
 						updateGame.notifyAllObservers();
 					}
 				}
