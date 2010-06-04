@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import com.structures.*;
 import com.structures.observer.Subject;
+import java.util.*;
 public class GamePanel extends JPanel{
 	private static GamePanel instance;
 	private static final long serialVersionUID = 1L;
@@ -199,15 +200,17 @@ public class GamePanel extends JPanel{
 							game.setPlayerTurn(2);
 						else
 							game.setPlayerTurn(1);
-						if (Chess.isCheck())
+						
+						if (game.isCheck())
 						{
 							System.out.println("Esti in sah");
-						if(Chess.isCheckMate())
+							ArrayList<Integer> moves=game.getUncheckPieces();
+							for (int i=0;i<moves.size();i++)
+								System.out.print(moves.get(i)+" ");
+						if(game.isCheckMate())
 							System.out.println("Sah mat");
 						}
-						else
-							System.out.println("Nu e sah");
-						System.out.println(Chess.getpiesemutabile().size());
+					//	System.out.println(Chess.getpiesemutabile().size());
 						updateGame.notifyAllObservers();
 					}
 				}

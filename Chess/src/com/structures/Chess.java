@@ -70,7 +70,8 @@ public class Chess {
 	}
 
 	public void verifica(int[][] mat2){
-		if(mat2[this.pozitRege.x][this.pozitRege.y]==1){ this.check=true; System.out.println("ESTI IN SAH!");
+		if(mat2[this.pozitRege.x][this.pozitRege.y]==1){ this.check=true;
+		//System.out.println("ESTI IN SAH!");
 		mutariposibile(mat2);
 		getpiesemutabile();
 		if(this.nrmutari==0 && getpiesemutabile().size()==0) {
@@ -113,7 +114,9 @@ public class Chess {
 					int[][] mati=Checkmat();
 					if(mati[this.pozitRege.x][this.pozitRege.y]==0)
 					{
-						piesemutabile.add((i*10)+j);
+						String x=i+j+"";
+						//System.out.println(x);
+						piesemutabile.add(Integer.getInteger(x));
 
 					}
 					tablainitiala=cfgBoard;
