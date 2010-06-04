@@ -95,7 +95,7 @@ package com.structures;
          } 
          private void matmorf(int i,int j) 
          { 
-                 int[][] mat1=this.gBoard.mat[i][j].posibleMove(tablainitiala[j][i],i,j,tablainitiala); 
+                 int[][] mat1=this.gBoard.mat[i][j].posibleMove(tablainitiala[i][j],i,j,tablainitiala); 
                  for(int x=0;x<8;x++) 
                          for(int y=0;y<8;y++) 
                                  if(x!=this.pozitRege.x&&y!=this.pozitRege.y) 
