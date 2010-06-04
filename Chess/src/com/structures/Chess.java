@@ -10,7 +10,7 @@ public class Chess {
 	boolean check=false;
 	boolean checkmate=false;
 	Coordonata pozitRege;
-	ArrayList<Coordonata> piesemutabile=new ArrayList<Coordonata>();
+	
 	private Board gBoard;
 	public Chess(int player,Board gBoard)
 	{
@@ -73,7 +73,7 @@ public class Chess {
 		if(mat2[this.pozitRege.x][this.pozitRege.y]==1){ this.check=true; System.out.println("ESTI IN SAH!");
 		mutariposibile(mat2);
 		getpiesemutabile();
-		if(this.nrmutari==0&&this.piesemutabile.size()==0) {
+		if(this.nrmutari==0 && getpiesemutabile().size()==0) {
 			this.checkmate=true;
 
 
@@ -101,8 +101,9 @@ public class Chess {
 					if(mat1[x][y]!=0) tablainitiala[x][y]=tablainitiala[i][j];
 
 	}
-	private void getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah
+	public ArrayList<Integer> getpiesemutabile()//returneaza un vector cu piesele care se pot muta in caz de sah
 	{
+		ArrayList<Integer> piesemutabile=new ArrayList<Integer>();
 		for(int i=0;i<8;i++)
 			for(int j=0;j<8;j++)
 				if(tablainitiala[i][j]/10==this.player)
@@ -112,12 +113,13 @@ public class Chess {
 					int[][] mati=Checkmat();
 					if(mati[this.pozitRege.x][this.pozitRege.y]==0)
 					{
-						piesemutabile.add(new Coordonata(i,j));
+						piesemutabile.add((i*10)+j);
 
 					}
 					tablainitiala=cfgBoard;
 
 				}
+		return piesemutabile;
 	}
 	private int[][] gettabla(int[][] tabla)
 	{
