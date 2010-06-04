@@ -1,6 +1,7 @@
 package com.structures.memento;
 import com.structures.command.*;
-public class Originator {
+public class Originator  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	public HistoryEntry save;
 	public Originator(HistoryEntry save){
 		this.save=save;
