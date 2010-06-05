@@ -3,6 +3,7 @@ import java.util.*;
 public class UndoHistoryBoard {
 	private static UndoHistoryBoard instance;
 	private ArrayList <HistoryEntry> history;
+	
 	private UndoHistoryBoard()
 	{
 		history=new ArrayList<HistoryEntry>();
@@ -35,6 +36,10 @@ public class UndoHistoryBoard {
 			return history.get(history.size()-1);	
 		else
 			return null;
+	}
+	
+	public ArrayList<HistoryEntry> getHistory() {
+		return history;
 	}
 	public void removeLast()
 	{

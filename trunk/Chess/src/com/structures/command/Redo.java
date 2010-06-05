@@ -20,13 +20,13 @@ public class Redo implements Task{
 	{
 		if(redoHistory.getLast()!=null)
 		{
-			undoHistory.addBoard(new HistoryEntry(game.getPlayerTurn(),board.getConfiguration()));
-
+			undoHistory.addBoard(new HistoryEntry(game.getPlayerTurn(),board.getConfiguration(),redoHistory.getLast().getOldPosition(),redoHistory.getLast().getNewPosition()));
+			
 			board.setBoard(redoHistory.getLast().getConfigBoard());
 			game.setPlayerTurn(redoHistory.getLast().getPlayerTurn());
 			gp.resetPiecesOnBoard();
-			updateGame.notifyAllObservers();
 			redoHistory.removeLast();
+			updateGame.notifyAllObservers();
 		}
 	}
 

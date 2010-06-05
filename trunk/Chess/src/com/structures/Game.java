@@ -37,7 +37,7 @@ public class Game{
 	}
 	public void movePiece(int pieceInitialPosition,int pieceNewPosition)
 	{
-		historyBoard.addBoard(new HistoryEntry(playerTurn,gBoard.configBoard));
+		historyBoard.addBoard(new HistoryEntry(playerTurn,gBoard.configBoard,""+pieceInitialPosition/10+pieceInitialPosition%10,""+pieceNewPosition/10+pieceNewPosition%10));
 		int movedPiece;
 		movedPiece=gBoard.configBoard[pieceInitialPosition/10][pieceInitialPosition%10];
 		gBoard.configBoard[pieceInitialPosition/10][pieceInitialPosition%10]=0;
