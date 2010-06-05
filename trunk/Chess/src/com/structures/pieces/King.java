@@ -147,8 +147,8 @@ public class King implements Piece{
 					kingMove[iPosition+1][jPosition+1]=0;
 				}
 				
-			}	*/
-			
+			}	
+			*/
 			if((pTurn/10==1)&&(jPosition==4)&&(iPosition==0)&&(boardConfiguration[0][5]==0)&&
 			   (boardConfiguration[0][6]==0)&&(boardConfiguration[0][7]==15))
 				{
