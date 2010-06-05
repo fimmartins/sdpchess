@@ -98,7 +98,7 @@ package com.structures;
                  int[][] mat1=this.gBoard.mat[i][j].posibleMove(tablainitiala[i][j],i,j,tablainitiala); 
                  for(int x=0;x<8;x++) 
                          for(int y=0;y<8;y++) 
-                                 if(x!=this.pozitRege.x&&y!=this.pozitRege.y) 
+            
                                          if(mat1[x][y]!=0) tablainitiala[x][y]=tablainitiala[i][j]; 
   
          } 
