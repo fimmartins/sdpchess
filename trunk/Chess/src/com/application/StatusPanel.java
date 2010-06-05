@@ -14,7 +14,7 @@ public class StatusPanel extends JPanel implements Observer{
 	private JList list;
 	private DefaultListModel listModel;
 	private JScrollPane listScrollPane;
-	private JPanel gameStats,historyList;
+	private JPanel gameStats;
 	public StatusPanel()
 	{
 		initStatusPanel();
@@ -24,7 +24,7 @@ public class StatusPanel extends JPanel implements Observer{
 		this.setSize(100, 500);
 		this.setVisible(true);
 		gameStats=new JPanel();
-		historyList=new JPanel();
+		//historyList=new JPanel();
 		gameStats.setLayout(new GridLayout(20,1));
 		
 		GridLayout panelGridLayout = new GridLayout();
