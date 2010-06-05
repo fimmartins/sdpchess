@@ -227,6 +227,7 @@ public class GamePanel extends JPanel{
 								checkMovePiece=game.getUncheckPieces();
 								for(int i=0;i<checkMovePiece.size();i++)
 									System.out.print(checkMovePiece.get(i)+" ");
+								System.out.println();
 								if(game.isCheckMate())
 								{
 									game.setGameover(true);

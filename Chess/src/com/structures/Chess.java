@@ -120,6 +120,9 @@ package com.structures;
                                         this.tablainitiala=gettabla(cfgBoard); 
   
                                  } 
+                 //for(int i=0;i<piesemutabile.size();i++)
+					//	System.out.print(piesemutabile.get(i)+" ");
+                 //System.out.println();
                  return piesemutabile;
          } 
          private int[][] gettabla(int[][] tabla) 
