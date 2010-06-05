@@ -124,6 +124,7 @@ public class GamePanel extends JPanel{
 					position=Integer.parseInt(movingPiece.getName());
 					//System.out.println(position);
 					boolean canMove=false;
+					checkMovePiece=game.getUncheckPieces();
 					if(game.isCheck() && checkMovePiece.contains(position))
 						canMove=true;
 					if(!game.isCheck())

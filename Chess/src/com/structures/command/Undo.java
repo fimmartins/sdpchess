@@ -20,13 +20,12 @@ private RedoHistoryBoard redoHistory=RedoHistoryBoard.getHistoryBoard();
 	{
 		if(undoHistory.getLast()!=null)
 		{
-		redoHistory.addBoard(new HistoryEntry(game.getPlayerTurn(),board.getConfiguration()));
-		
+		redoHistory.addBoard(new HistoryEntry(game.getPlayerTurn(),board.getConfiguration(),undoHistory.getLast().getOldPosition(),undoHistory.getLast().getNewPosition()));
 		board.setBoard(undoHistory.getLast().getConfigBoard());
 		game.setPlayerTurn(undoHistory.getLast().getPlayerTurn());
 		gp.resetPiecesOnBoard();
-		updateGame.notifyAllObservers();
 		undoHistory.removeLast();
+		updateGame.notifyAllObservers();
 		}
 	}
 }
