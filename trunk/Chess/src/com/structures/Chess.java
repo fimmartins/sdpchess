@@ -74,7 +74,7 @@ package com.structures;
                  //System.out.println("ESTI IN SAH!"); 
                  mutariposibile(mat2); 
                  getpiesemutabile(); 
-                 if(this.nrmutari==0&&this.piesemutabile.size()==0) { 
+                 if(this.nrmutari==0&&this.piesemutabile.size()==1) { 
                          this.checkmate=true; 
   
   
@@ -135,12 +135,12 @@ package com.structures;
          } 
          private int[][] pionmove(int[][] tabla,int i,int j) 
          { 
-                 if(i+1<8) if(tabla[i+1][j]==1) { tabla[i+1][j]=0; 
+                 if(i+1<8) if(player==2) { tabla[i+1][j]=0; 
                  if(j-1>0) tabla[i+1][j-1]=1; 
                  if(j+1<8) tabla[i+1][j+1]=1; 
                  if(i+2<8) tabla[i+2][j]=0; 
                  } 
-                 if(i-1>0) if(tabla[i-1][j]==1) { tabla[i-1][j]=0; 
+                 if(i-1>0) if(player==1) { tabla[i-1][j]=0; 
                  if(j-1>0) tabla[i-1][j-1]=1; 
                  if(j+1<8) tabla[i-1][j+1]=1; 
                  if(i-2<8) tabla[i-2][j]=0; 
