@@ -21,6 +21,7 @@ public class NewGame implements Task{
 		board.resetBoard();
 		gp.resetPiecesOnBoard();
 		game.setPlayerTurn(1);
+		game.setGameover(false);
 		undoHistory.resetHistoryBoard();
 		redoHistory.resetHistoryBoard();
 		updateGame.notifyAllObservers();
