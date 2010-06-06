@@ -54,8 +54,10 @@ public class StatusPanel extends JPanel implements Observer{
 		}
 		else
 			check.setText("");
+		
 		if(game.isDraw())
 			check.setText("DRAW!");
+		
 		gameStats.add(check);	
 		
 		listModel=new DefaultListModel();
@@ -86,6 +88,8 @@ public class StatusPanel extends JPanel implements Observer{
 		}
 		else
 			check.setText("");
+		if(game.isDraw())
+			check.setText("DRAW!");
 		listModel.clear();
 		for(int i=0;i<uhb.getHistory().size();i++)
 			listModel.addElement("Player: "+uhb.getHistory().get(i).getPlayerTurn()+"   Move: "+uhb.getHistory().get(i).getOldPosition()+"->"+uhb.getHistory().get(i).getNewPosition());
