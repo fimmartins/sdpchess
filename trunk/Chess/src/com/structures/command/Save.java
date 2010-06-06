@@ -4,8 +4,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import javax.swing.JOptionPane;
-
 import com.structures.Board;
 import com.structures.Game;
 import com.structures.memento.*;
