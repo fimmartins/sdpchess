@@ -45,6 +45,7 @@ public class StatusPanel extends JPanel implements Observer{
 			turn.setText("Player Turn: BLACK");
 		gameStats.add(turn);
 		check=new JLabel();
+		
 		if(game.isCheck())
 		{
 			check.setText("You are in check!");
@@ -53,9 +54,10 @@ public class StatusPanel extends JPanel implements Observer{
 		}
 		else
 			check.setText("");
-		gameStats.add(check);
-
-
+		if(game.isDraw())
+			check.setText("DRAW!");
+		gameStats.add(check);	
+		
 		listModel=new DefaultListModel();
 		for(int i=0;i<uhb.getHistory().size();i++)
 			listModel.addElement(uhb.getHistory().get(i).getPlayerTurn());

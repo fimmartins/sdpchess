@@ -111,7 +111,7 @@ public class GamePanel extends JPanel{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			if(!game.isGameover())
+			if(!game.isGameover() || game.isDraw())
 			{
 				JButton aux=((JButton)e.getSource());
 				int position=Integer.parseInt(aux.getName());
