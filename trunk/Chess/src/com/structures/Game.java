@@ -29,6 +29,12 @@ public class Game{
 	{
 		return gBoard.mat[i][j].icon();
 	}
+	public boolean isDraw()
+	{
+		if (gBoard.getPieceNumber()<3)
+			return true;
+		return false;
+	}
 	public int[][] getPiecePosibleMove(int i,int j)
 	{
 		if(getPiece(i,j)%10==9)

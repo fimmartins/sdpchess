@@ -63,6 +63,15 @@ private Piece partID(int player,int id)
   return new NullPiece();
 	  
 }
+public int getPieceNumber()
+{
+	int nr=0;
+	for(int i=0;i<8;i++)
+		for(int j=0;j<8;j++)
+			if(configBoard[i][j]!=0)
+				nr++;
+	return nr;
+}
 private void setPiecesOnBoard()
 {
 	for(int i=0;i<8;i++)
