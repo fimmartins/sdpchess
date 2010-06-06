@@ -3,6 +3,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+
+import javax.swing.JOptionPane;
+
 import com.structures.Board;
 import com.structures.Game;
 import com.structures.memento.*;
@@ -22,8 +25,9 @@ public class Save implements Task{
 		try {
 			out = new ObjectOutputStream( new FileOutputStream("saves.out"));
 			out.writeObject("Storage");
-			out.writeObject(table);////aici a poate sa fie orice tip de obiect
-			out.close(); // Also flushes output
+			out.writeObject(table);
+			out.close();
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
