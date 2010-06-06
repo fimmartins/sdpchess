@@ -79,12 +79,14 @@ public class Menu extends JMenuBar {
 	{
 	 public void actionPerformed(ActionEvent e) {
 	        task.doTask("Save");
+	        JOptionPane.showMessageDialog(Menu.this.getParent(), "Save done!");
 	    }
 	}
 	class loadListener implements ActionListener
 	{
 	 public void actionPerformed(ActionEvent e) {
 	        task.doTask("Load");
+	        JOptionPane.showMessageDialog(Menu.this.getParent(), "Load done!");
 	    }
 	}
 
