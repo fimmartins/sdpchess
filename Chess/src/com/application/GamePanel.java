@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import com.structures.*;
+import com.structures.command.Undo;
 import com.structures.observer.Subject;
 import java.util.*;
 public class GamePanel extends JPanel{
@@ -15,6 +16,7 @@ public class GamePanel extends JPanel{
 	private JButton movingPiece=new JButton();
 	private Subject updateGame=Subject.getSubject();
 	private ArrayList<Integer> checkMovePiece;
+	
 	//private LoadImagine loadImg=new LoadImagine();
 	boolean moveIsActive=false;
 
@@ -216,11 +218,18 @@ public class GamePanel extends JPanel{
 							}
 							moveIsActive=false;
 							drawBoardColors();
+							if(game.isCheck())
+							{
+								Undo un=new Undo();
+								un.performTask();
+							}
+							else
+							{
 							if(game.getPlayerTurn()==1)
 								game.setPlayerTurn(2);
 							else
 								game.setPlayerTurn(1);
-
+							}
 							if (game.isCheck())
 							{
 								//System.out.println("Check");
