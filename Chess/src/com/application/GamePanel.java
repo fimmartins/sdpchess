@@ -23,6 +23,8 @@ public class GamePanel extends JPanel{
 	private GamePanel()
 	{
 		this.setSize(500, 500);
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+		this.setBackground(Color.DARK_GRAY);
 		this.setVisible(true);
 		GridLayout panelGridLayout = new GridLayout();
 		panelGridLayout.setRows(8);
@@ -57,14 +59,14 @@ public class GamePanel extends JPanel{
 				buttons[i][j].setFocusPainted(false);
 				if(i%2==0)
 					if(j%2==0)
-						buttons[i][j].setBackground(Color.GRAY);
+						buttons[i][j].setBackground(Color.ORANGE);
 					else
 						buttons[i][j].setBackground(Color.WHITE);
 				else
 					if(j%2==0)
 						buttons[i][j].setBackground(Color.WHITE);
 					else
-						buttons[i][j].setBackground(Color.GRAY);
+						buttons[i][j].setBackground(Color.ORANGE);
 				this.add(buttons[i][j]);
 			}
 		//buttons[3][3].setIcon(loadImg.getIcon("/images/selected.png"));
@@ -78,14 +80,14 @@ public class GamePanel extends JPanel{
 				buttons[i][j].setName(i+""+j);
 				if(i%2==0)
 					if(j%2==0)
-						buttons[i][j].setBackground(Color.GRAY);
+						buttons[i][j].setBackground(Color.ORANGE);
 					else
 						buttons[i][j].setBackground(Color.WHITE);
 				else
 					if(j%2==0)
 						buttons[i][j].setBackground(Color.WHITE);
 					else
-						buttons[i][j].setBackground(Color.GRAY);
+						buttons[i][j].setBackground(Color.ORANGE);
 			}
 	}
 	private void drawBoardColors()
@@ -96,14 +98,14 @@ public class GamePanel extends JPanel{
 				buttons[i][j].setBorder(new JButton().getBorder());
 				if(i%2==0)
 					if(j%2==0)
-						buttons[i][j].setBackground(Color.GRAY);
+						buttons[i][j].setBackground(Color.ORANGE);
 					else
 						buttons[i][j].setBackground(Color.WHITE);
 				else
 					if(j%2==0)
 						buttons[i][j].setBackground(Color.WHITE);
 					else
-						buttons[i][j].setBackground(Color.GRAY);
+						buttons[i][j].setBackground(Color.ORANGE);
 				this.add(buttons[i][j]);
 			}
 	}
@@ -149,11 +151,11 @@ public class GamePanel extends JPanel{
 										if(posibleMoves[i][j]==1 || posibleMoves[i][j]==2 || posibleMoves[i][j]==3)
 										{
 											if(posibleMoves[i][j]==1)
-												buttons[i][j].setBackground(new Color(9,121,206));
+												buttons[i][j].setBackground(Color.LIGHT_GRAY);
 											if(posibleMoves[i][j]==2)
 												buttons[i][j].setBackground(Color.RED);
 											if(posibleMoves[i][j]==3)
-												buttons[i][j].setBackground(Color.ORANGE);
+												buttons[i][j].setBackground(Color.YELLOW);
 											moveNr++;
 										}
 								}
