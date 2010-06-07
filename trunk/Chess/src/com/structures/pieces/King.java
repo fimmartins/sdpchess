@@ -159,13 +159,13 @@ public class King implements Piece{
 				{
 					kingMove[0][1]=3;
 				}
-			if((pTurn/10==2)&&(jPosition==3)&&(iPosition==7)&&(boardConfiguration[7][2]==0)&&
-			    (boardConfiguration[7][1]==0)&&(boardConfiguration[7][0]==25))
+			if((pTurn/10==2)&&(jPosition==4)&&(iPosition==7)&&(boardConfiguration[7][3]==0)&&
+			    (boardConfiguration[7][2]==0)&&(boardConfiguration[7][1]==0)&&(boardConfiguration[7][0]==25))
 				{
 					kingMove[7][1]=3;
 				}
-			if((pTurn/10==2)&&(jPosition==3)&&(iPosition==7)&&(boardConfiguration[7][4]==0)&&
-			   (boardConfiguration[7][5]==0)&&(boardConfiguration[7][6]==0)&&(boardConfiguration[7][7]==25))
+			if((pTurn/10==2)&&(jPosition==4)&&(iPosition==7)&&(boardConfiguration[7][5]==0)&&
+			   (boardConfiguration[7][6]==0)&&(boardConfiguration[7][7]==25))
 				{
 					kingMove[7][6]=3;
 				}

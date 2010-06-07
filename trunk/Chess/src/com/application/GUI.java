@@ -14,6 +14,7 @@ public class GUI extends JFrame{
 		this.setSize(1000, 500);
 		//this.setModalExclusionType(exclusionType)
 		this.setLocationRelativeTo(null);
+
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.setRows(2);
 		gridLayout.setColumns(1);
@@ -36,7 +37,6 @@ public class GUI extends JFrame{
 		
 		Subject updateGame=Subject.getSubject();
 		updateGame.attach(sp);
-		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		

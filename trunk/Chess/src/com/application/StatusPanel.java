@@ -1,4 +1,5 @@
 package com.application;
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.*;
@@ -21,6 +22,8 @@ public class StatusPanel extends JPanel implements Observer{
 	}
 	private void initStatusPanel()
 	{
+
+		this.setBackground(Color.CYAN);
 		this.setSize(100, 500);
 		this.setVisible(true);
 		gameStats=new JPanel();
@@ -69,6 +72,11 @@ public class StatusPanel extends JPanel implements Observer{
 		list.setSelectedIndex(0);
 		list.setVisibleRowCount(5);
 		listScrollPane = new JScrollPane(list);
+		list.setBackground(Color.ORANGE);
+		listScrollPane.setBackground(Color.ORANGE);
+		gameStats.setBackground(Color.ORANGE);
+		list.setBorder(BorderFactory.createLineBorder(Color.WHITE,2));
+		gameStats.setBorder(BorderFactory.createLineBorder(Color.WHITE,2));
 		this.add(gameStats);
 		this.add(listScrollPane);
 
